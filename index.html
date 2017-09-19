@@ -1,7 +1,153 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1>OKDALTO's personal page</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+  <head>
+      
+    <meta  charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>초코딩</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.js"type="text/javascript"></script>
+    <script src="//igh.kr/p5.dom.js" type="text/javascript"></script>
+
+        <style> 
+            body 
+            {
+                text-decoration:none;
+            } 
+            canvas {
+                vertical-align: top;
+                z-index: 1;
+                position: absolute;
+                height: 0px;
+                top: 0px;
+                left: 0px;
+            } 
+            .headline1 {
+                z-index: 2;
+                position: absolute;
+                top: 40%; 
+                left: 50%;
+                color:white;
+                vertical-align: middle;
+                text-align: center;
+                transform: translateX(-50%); 
+                text-decoration:none;
+                /*transform: translateY(-50%); */
+                white-space:nowrap;
+
+
+            }
+            
+            .headline2 {
+                z-index: 2;
+                position: absolute;
+                top: 60%; 
+                left: 50%;
+                color:white;
+                vertical-align: middle;
+                text-align: center;
+                transform: translateX(-50%); 
+                text-decoration:none;
+                /*transform: translateY(-50%); */
+            }
+
+            .headline2:hover {
+                z-index: 2;
+                position: absolute;
+                top: 60%; 
+                left: 50%;
+                color:gray;
+                vertical-align: middle;
+                text-align: center;
+                transform: translateX(-50%); 
+                text-decoration:none;
+                /*transform: translateY(-50%); */
+            }
+
+
+        </style>
+    </head>
+    <body>
+            <h1 class = "headline1">초코딩 방학맞이<br>멤버 모집</h1>
+            <a href="https://goo.gl/forms/qbTAnxFMtApb3Igg2" target="_blank">
+            <h2 class = "headline2">링크</h2>
+            </a>
+        <script>
+            var ptclList = [];
+            var pp = [];
+            var a;
+            var b;
+            var ballnum = 50;
+            var start = ballnum;
+                
+            function setup() {
+                w = window.innerWidth;
+                h = window.innerHeight;
+                createCanvas(w,h);
+                textAlign(CENTER);
+                for(var i = 0 ; i < ballnum; i ++){
+                    var p = new Ptcl(random(0,width),random(0,height),i);
+                    ptclList.push(p);
+                }
+            
+            }
+            
+            function draw() {
+                background(0);
+                for(var i = 0 ; i < ptclList.length ; i++ ){
+                    ptclList[i].update();
+                    ptclList[i].draw();
+                }
+                if(mouseIsPressed){
+                    var p = new Ptcl(mouseX,mouseY,10,10);
+                    ptclList.push(p);
+                    start++;
+                }
+            }
+            
+            function mousePressed(){
+            }
+            
+            
+            function Ptcl(x, y,start) {
+              this.x = x;
+              this.y = y;
+              this.start = start;
+              this.speedX = random(-2,2);
+              this.speedY = random(-2,2);
+            }
+            
+            
+            Ptcl.prototype.draw = function() {
+                noStroke();
+                ellipse(this.x,this.y,10,10);
+            }
+            
+            Ptcl.prototype.update = function() {
+              this.x += this.speedX;
+              this.y += this.speedY;
+              if(this.x > width || this.x < 0 ){
+                this.speedX=-this.speedX;
+              }
+              if(this.y > height || this.y < 0 ){
+                this.speedY=-this.speedY;
+              }
+              for(var i = this.start ; i < ptclList.length ; i++ ){
+                var Dx = ptclList[i].x - this.x ;
+                var Dy = ptclList[i].y - this.y ;
+                var DD = sqrt(sq(Dx)+sq(Dy));
+                if(DD<50){
+                    stroke(255);
+                    line(this.x,this.y,ptclList[i].x,ptclList[i].y);
+                }
+              }
+            }
+
+            function windowResized() {
+                w = window.innerWidth;
+                h = window.innerHeight;
+                ellipseWidth=w/5;
+                ellipseHeight=h/5;
+                resizeCanvas(w, h);
+            } 
+        </script>
+  </body>
 </html>
