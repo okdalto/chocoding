@@ -93,14 +93,12 @@
                     ptclList[i].update();
                     ptclList[i].draw();
                 }
-                if(mouseIsPressed){
-                    var p = new Ptcl(mouseX,mouseY,10,10);
-                    ptclList.push(p);
-                    start++;
-                }
             }
             
             function mousePressed(){
+              var p = new Ptcl(mouseX,mouseY,10,10);
+              ptclList.push(p);
+              start++;
             }
             
             
