@@ -84,7 +84,6 @@
             }
             
             function draw() {
-              deltaTime = (window.performance.now()-beforeMil)*0.01;
                 background(0);
                 for(var i = 0 ; i < ptclList.length ; i++ ){
                     ptclList[i].update();
@@ -113,8 +112,8 @@
             }
             
             Ptcl.prototype.update = function() {
-              this.x += this.speedX*deltaTime;
-              this.y += this.speedY*deltaTime;
+              this.x += this.speedX;
+              this.y += this.speedY;
               if(this.x > width || this.x < 0 ){
                 this.speedX=-this.speedX;
               }
