@@ -24,7 +24,7 @@
           margin-left: 10%;
           margin-right: 10%;
           margin-bottom: 50%;
-          font-size: 23px;
+          font-size: 18px;
           line-height: 150%;
         }
         
@@ -102,12 +102,6 @@
               ptclList[i].draw();
           }
         beforeMil = window.performance.now();
-      }
-
-      function mouseReleased(){
-        var p = new Ptcl(mouseX,mouseY,10,10);
-        ptclList.push(p);
-        start++;
       }
 
       function Ptcl(x, y,start) {
