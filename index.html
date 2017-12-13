@@ -69,7 +69,9 @@
             var pp = [];
             var ballnum = 8;
             var start = ballnum;
-                
+            var beforeMil = 0;
+            var deltaTime = 0;
+          
             function setup() {
                 w = window.innerWidth;
                 h = window.innerHeight;
@@ -83,11 +85,13 @@
             }
             
             function draw() {
+              deltaTime = (window.performance.now()-beforeMil)*0.01;
                 background(0);
                 for(var i = 0 ; i < ptclList.length ; i++ ){
                     ptclList[i].update();
                     ptclList[i].draw();
                 }
+              beforeMil = window.performance.now();
             }
             
             function mouseReleased(){
@@ -101,8 +105,8 @@
               this.x = x;
               this.y = y;
               this.start = start;
-              this.speedX = random(-2,2);
-              this.speedY = random(-2,2);
+              this.speedX = random(-10,10);
+              this.speedY = random(-10,10);
             }
             
             Ptcl.prototype.draw = function() {
@@ -111,8 +115,8 @@
             }
             
             Ptcl.prototype.update = function() {
-              this.x += this.speedX;
-              this.y += this.speedY;
+              this.x += this.speedX*deltaTime;
+              this.y += this.speedY*deltaTime;
               if(this.x > width || this.x < 0 ){
                 this.speedX=-this.speedX;
               }
@@ -135,6 +139,7 @@
                 h = window.innerHeight;
                 resizeCanvas(w, h);
             } 
+
       </script>
   </body>
 </html>
