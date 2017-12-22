@@ -236,7 +236,7 @@
         if(this.y > height || this.y < 0 ){
           this.speedY=-this.speedY;
         }
-        for(var i = this.start ; i < ptclList.length ; i++ ){
+        for(var i = this.start + 1 ; i < ptclList.length ; i++ ){
           var Dx = ptclList[i].x - this.x ;
           var Dy = ptclList[i].y - this.y ;
           var DD = sqrt(sq(Dx)+sq(Dy));
