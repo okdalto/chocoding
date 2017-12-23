@@ -187,44 +187,34 @@
     <script>
       var ptclList = [];
       var pp = [];
-      var ballnum = 1;
-      var beforeMil = 0;
-      var deltaTime = 0;
+      var ballnum = 10;
 
       function setup() {
           w = window.innerWidth;
           h = window.innerHeight;
           createCanvas(w,h);
-          textAlign(CENTER);
-        ptclList.push(new Ptcl(random(0,width),random(0,height),i));
           for(var i = 0 ; i < ballnum; i ++){
+            ptclList.push(new Ptcl(random(0,width),random(0,height),i));
           }
-
       }
 
       function draw() {
           background(0);
           for(var i = 0 ; i < ptclList.length ; i++ ){
-              ptclList[i].update();
               ptclList[i].draw();
           }
-        beforeMil = window.performance.now();
+        //beforeMil = window.performance.now();
       }
 
       function Ptcl(x, y,start) {
         this.x = x;
         this.y = y;
         this.start = start;
-        this.speedX = random(-2,2);
-        this.speedY = random(-2,2);
+        this.speedX = random(-1.5,1.5);
+        this.speedY = random(-1.5,1.5);
       }
 
       Ptcl.prototype.draw = function() {
-          noStroke();
-          ellipse(this.x,this.y,10,10);
-      }
-
-      Ptcl.prototype.update = function() {
         this.x += this.speedX;
         this.y += this.speedY;
         if(this.x > width || this.x < 0 ){
@@ -242,6 +232,9 @@
               line(this.x,this.y,ptclList[i].x,ptclList[i].y);
           }
         }
+        //draw ellipse
+        noStroke();
+        ellipse(this.x,this.y,10,10);
       }
 
       function windowResized() {
