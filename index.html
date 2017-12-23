@@ -197,8 +197,8 @@
           h = window.innerHeight;
           createCanvas(w,h);
           textAlign(CENTER);
+        ptclList.push(new Ptcl(random(0,width),random(0,height),i));
           for(var i = 0 ; i < ballnum; i ++){
-              ptclList.push(new Ptcl(random(0,width),random(0,height),i));
           }
 
       }
@@ -238,10 +238,10 @@
           var Dx = ptclList[i].x - this.x ;
           var Dy = ptclList[i].y - this.y ;
           var DD = sqrt(sq(Dx)+sq(Dy));
-          //if(DD<50){
+          if(DD<50){
               stroke(255);
               line(this.x,this.y,ptclList[i].x,ptclList[i].y);
-          //}
+          }
         }
       }
 
