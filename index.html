@@ -47,13 +47,11 @@
             width: 100%;
             height: 100%;
           } 
-          .footer {
-            position:absolute;
-            bottom:0;
-            width:100%;
-            height:70px;   
-            background:#ccc;
-          }
+          html,body{height:100%}
+          body{margin:0}
+          #body{min-height:100%}
+          #content{padding-bottom:1.9em}
+          #foot{margin-top:-1.9em;height:1.9em}
         }
         
         
@@ -100,13 +98,11 @@
             width: 100%;
             height: 100%;
           } 
-          .footer {
-            position:absolute;
-            bottom:0;
-            width:100%;
-            height:70px;   
-            background:#ccc;
-          }
+          html,body{height:100%}
+          body{margin:0}
+          #body{min-height:100%}
+          #content{padding-bottom:1.9em}
+          #foot{margin-top:-1.9em;height:1.9em}
         }
 
       </style>
@@ -233,7 +229,13 @@ A. 네...
       
       </div>
     </div>
-    <div class="footer">footer</div>
+    <div id="body">
+      <div id="content">
+      </div>
+    </div>
+    <div id="foot">
+        <a href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">참여 링크</a>
+    </div>
 
     <script>
       var ptclList = [];
