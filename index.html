@@ -41,25 +41,45 @@
             width: 100%;
             padding-bottom:56.25%;
           }
-
           .youtubeWrap iframe{
             position: absolute;
             width: 100%;
             height: 100%;
           } 
-          #footWrap{
+          
+          #rightWrap{
             position: fixed;
             bottom: 50%;
             right: 10%;
           }
-          #foot:link{
+          #right:link{
             text-decoration:none;
             color: white;
+            font-weight: bold;
             font-size: 2em;
           }
-          #foot:hover{
+          #right:hover{
             text-decoration:none;
             color: blue;
+            font-weight: bold;
+            font-size: 2em;
+          }
+          
+          #lefttWrap{
+            position: fixed;
+            bottom: 50%;
+            left: 10%;
+          }
+          #left:link{
+            text-decoration:none;
+            color: white;
+            font-weight: bold;
+            font-size: 2em;
+          }
+          #left:hover{
+            text-decoration:none;
+            color: blue;
+            font-weight: bold;
             font-size: 2em;
           }
         }
@@ -108,25 +128,40 @@
             width: 100%;
             height: 100%;
           } 
-          #footWrap{
+          #rightWrap{
             position: fixed;
-            bottom: 10%;
+            bottom: 50%;
             right: 10%;
           }
-          #foot:link{
+          #right:link{
             text-decoration:none;
             color: white;
-            font-size: 1.5em;
+            font-weight: bold;
+            font-size: 1em;
           }
-          #foot:hover{
+          #right:hover{
             text-decoration:none;
             color: blue;
-            font-size: 1.5em;
+            font-weight: bold;
+            font-size: 1em;
           }
-          #foot:visited{
+          
+          #leftWrap{
+            position: fixed;
+            bottom: 50%;
+            left: 10%;
+          }
+          #left:link{
             text-decoration:none;
             color: white;
-            font-size: 1.5em;
+            font-weight: bold;
+            font-size: 1em;
+          }
+          #left:hover{
+            text-decoration:none;
+            color: blue;
+            font-weight: bold;
+            font-size: 1em;
           }
         }
 
@@ -135,10 +170,12 @@
   <body>
     <div>
       <div class="parahraph"> 
-        <div id="footWrap">
-          <a id="foot" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">참여 링크</a>
+        <div id="rightWrap">
+          <a id="right" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">참여 링크</a>
         </div>
-        <h1>초코딩</h1>
+        <div id="leftWrap">
+          <p id ="left">초코딩</p>
+        </div>
         <br/>
         <p class="img">
           <img src="https://github.com/okdalto/okdalto/blob/master/img/CHOCO.png?raw=true" style="max-width: 100%; height: auto" >
