@@ -7,7 +7,10 @@
     <script src="https://cdn.rawgit.com/okdalto/okdalto/master/p5/p5.js"type="text/javascript"></script>
 
       <style> 
-        @media screen and (min-width: 801px) {
+        @media screen and (min-width: 1201px) {
+          body {
+            background: black;
+          }
           canvas {
             z-index: -1;  
             position : fixed;
@@ -16,16 +19,16 @@
           }
 
           .parahraph {
-            z-index: 2;
-            text-decoration:none;
-            color: white;
-            text-align: center;
-            margin-top: 40px;
-            margin-left: 32%;
-            margin-right: 32%;
-            margin-bottom: 10%;
-            font-size: 1.2em;
-            line-height: 150%;
+              width:700px;
+              margin:0 auto;
+              z-index: 2;
+              text-decoration:none;
+              color: white;
+              text-align: center;
+              margin-top: 40px;
+              margin-bottom: 10%;
+              font-size: 1.2em;
+              line-height: 165%;
           }
             
             .img
@@ -55,10 +58,12 @@
             z-index: 3;
             position: fixed;
             bottom: 50%;
-            right: 12%;
+            right: calc((100% - 700px)/4);
           }
           #right:link{
             background-color:white;
+            left: 50%;
+            position: relative;
             text-align: center;
             text-decoration:none;
             color: black;
@@ -67,6 +72,8 @@
           }
           #right:visited{
             background-color:white;
+            left: 50%;
+            position: relative;
             text-align: center;
             text-decoration:none;
             color: black;
@@ -75,6 +82,8 @@
           }
           #right:hover{
             background-color:black;
+            left: 50%;
+            position: relative;
             text-align: center;
             text-decoration:none;
             color: white;
@@ -87,12 +96,21 @@
             text-align: center;
             position: fixed;
             bottom: 50%;
-            left: 12%;
+            left: calc((100% - 700px)/4);
             text-decoration:none;
             font-weight: bold;
             font-size: 2em;
           }
-          
+
+         #left{
+             background-color:white; 
+             color: black; 
+             text-align: center; 
+             position: relative; 
+             left:-50%;          
+            }
+ 
+            
           #link{
             background-color:white;
             text-decoration:none;
@@ -109,8 +127,128 @@
             text-shadow: black 0px 0px 10px;
           }
         }
-        
-        
+          
+        @media screen and (min-width: 801px) and (max-width: 1200px){
+          body {
+            background: black;
+          }
+          canvas {
+            z-index: -1;  
+            position : fixed;
+            bottom: 0px;
+            left: 0px;
+          }
+
+          .parahraph {
+            width:550px;
+            margin:0 auto;
+            z-index: 2;
+            text-decoration:none;
+            color: white;
+            text-align: center;
+            margin-top: 10%;
+            margin-bottom: 10%;
+            font-size: 1.2em;
+            line-height: 165%;
+          }
+
+            .img
+            {
+              text-align: center;
+              max-width: 80%; 
+              height: auto; 
+              margin:0 0 20px 0;
+            }
+
+          .youtubeWrap{
+            z-index: 1;
+            left: -50%;
+            position:relative;
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            padding-bottom:56.25%;
+          }
+
+          .youtubeWrap iframe{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+          } 
+          #rightWrap{
+            z-index: 3;
+            position: fixed;
+            top: 50%;
+            right: calc((100% - 550px)/4);
+          }
+          #right:link{
+            background-color:white;
+            left: 50%;
+            position: relative;
+            text-align: center;
+            text-decoration:none;
+            color: black;
+            font-weight: bold;
+            font-size: 1.5em;
+          }
+          #right:visited{
+            background-color:white;
+            left: 50%;
+            position: relative;
+            text-align: center;
+            text-decoration:none;
+            color: black;
+            font-weight: bold;
+            font-size: 1.5em;
+          }
+          #right:hover{
+            background-color:black;
+            left: 50%;
+            position: relative;
+            text-align: center;
+            text-decoration:none;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5em;
+          }
+
+          #leftWrap{
+            z-index: 3;
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: calc((100% - 550px)/4);
+            text-decoration:none;
+            font-weight: bold;
+            font-size: 1.5em;
+          }
+         #left{
+             background-color:white; 
+             color: black; 
+             text-align: center; 
+             position: relative; 
+             left:-50%;          
+            }
+            
+          #link{
+            background-color:white;
+            text-decoration:none;
+            color: black;
+            text-shadow: black 0px 0px 0px;
+          }
+          #link:hover{
+            background-color:black;
+            text-decoration:none;
+            color: white;
+            text-shadow: black 0px 0px 0px;
+          }
+          #shadow{
+            text-shadow: black 0px 0px 10px;
+          }
+        }
+          
+          
+          
         @media screen and (max-width: 800px) {
           body {
             background: black;
@@ -123,16 +261,16 @@
           }
 
           .parahraph {
+          width:400px;
+          margin:0 auto;
             z-index: 2;
             text-decoration:none;
             color: white;
             text-align: center;
             margin-top: 40px;
-            margin-left: 10%;
-            margin-right: 10%;
             margin-bottom: 10%;
             font-size: 1.0em;
-            line-height: 150%;
+            line-height: 165%;
           }
 
             .img
@@ -164,6 +302,12 @@
             top: 3%;
             right: 5%;
           }
+            
+         #left{
+             background-color:white; 
+             color: black; 
+             text-align: center; 
+            }
           #right:link{
             background-color:white;
             text-align: center;
@@ -219,18 +363,17 @@
       </style>
     </head>
   <body>
-      <div class="parahraph">
           <div id="rightWrap">
               <a id="right" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">
-                  가입신청
-              </a>
+                  가입신청
+              </a>
           </div>
           <div id="leftWrap">
-              <span style="background-color:white; color: black;">
+              <span id="left">
                   초코딩
               </span>
           </div>
-          
+      <div class="parahraph">
           <img class="img" src="https://github.com/okdalto/okdalto/blob/master/img/CHOCO.png?raw=true">
           
           <h1>
@@ -240,7 +383,7 @@
           </h1>
 
           <p style="margin:0 0 50px 0;" id="shadow">
-              ‘초코딩’은 ‘초보자 코딩모임’의 약자로 코딩 하면 떠오르는 딱딱하고 난해한 이미지에서 탈피해 디자이너가 좀 더 쉽게 코딩을 배울 수 있도록 도와주는 영상디자인학과 내 코딩 스터디 동아리입니다. 이 페이지는 연습도 할 겸 심심해서 만들어보았습니다. <a id="link" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">링크</a>를 통해 <a id="link" href="https://www.facebook.com/groups/okdalto/">초코딩 페이스북 페이지</a>에 가입신청하세요!
+              ‘초코딩’은 ‘초보자 코딩모임’의 약자로 코딩 하면 떠오르는 딱딱하고 난해한 이미지에서 탈피해 디자이너가 좀 더 쉽게 코딩을 배울 수 있도록 도와주는 영상디자인학과 내 코딩 스터디 동아리입니다. 이 페이지는 연습도 할 겸 심심해서 만들어보았습니다. <a id="link" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">링크</a>를 통해 초코딩 <a id="link" href="https://www.facebook.com/groups/okdalto/">페이스북 페이지</a>에 가입신청하세요!
           </p>
           <h1>
               <span style="background-color:white; color: black;">
@@ -255,7 +398,7 @@
 그런데 우리는 왜 코딩을 배울까요? 재미있기 때문입니다! 게임하는데 이유가 어딨어요. 그냥 하는거지. 코딩도 마찬가지입니다. 코딩 재미있습니다. 특히 바로바로 결과물이 보이는 코딩은 더 재미있습니다. 재미 없다구요? 그럼 어쩔 수 없죠...
           </p>
           <p style="margin:0 0 50px 0;" id="shadow">
-초코딩은 디자이너에게 쓸모가 있을지도, 없을지도 모르는 코딩 테크닉을 전수하여 왠지 있어 보이는 과제를 제출하는 데 도움을 줍니다. 스터디를 통해 초코딩 회원은 지식을 얻어가고 초코딩 회장은 지적 허영심을 충전하는 완벽한 WIN-WIN 체계를 이루고 있습니다. 4차 산업혁명 만세!
+초코딩은 디자이너에게 쓸모가 있을지도, 없을지도 모르는 코딩 테크닉을 전수하여 왠지 어렵고 있어 보이는 과제를 제출하는 데 도움을 줍니다. 스터디를 통해 초코딩 회원은 지식을 얻어가고 초코딩 회장은 지적 허영심을 충전하는 완벽한 WIN-WIN 체계를 이루고 있습니다.
           </p>
           
           <h1>
@@ -265,13 +408,13 @@
           </h1>
           
           <p id="shadow">
-              초코딩 주간 정기모임의 일시, 장소 등의 진행사항은 매주 <a id="link" href="https://www.facebook.com/groups/okdalto/">초코딩 페이스북 페이지</a>에 공지되며 해당 공지에 참석 의사를 댓글로 밝히고 참석하시면 됩니다. 초코딩에 가입을 원하는 신규 부원들은 <a id="link" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">링크</a>를 통해 가입신청해주시면 <a id="link" href="https://www.facebook.com/groups/okdalto/">페이스북 페이지</a>에 초대해드리도록 하겠습니다.
+              초코딩 주간 정기모임의 일시, 장소 등의 진행사항은 매주 초코딩 <a id="link" href="https://www.facebook.com/groups/okdalto/">페이스북 페이지</a>에 공지되며 해당 공지에 참석 의사를 댓글로 밝히고 참석하시면 됩니다. 초코딩에 가입을 원하는 신규 부원들은 <a id="link" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">링크</a>를 통해 가입신청해주시면 <a id="link" href="https://www.facebook.com/groups/okdalto/">페이스북 페이지</a>에 초대해드리도록 하겠습니다.
           </p>
           <p id="shadow">
               스터디는 그날그날 의견을 받아서 진행하는데 초코대장 맘대로 궁금한 점을 질문받아서 그것에 대한 강의를 진행하거나 신입이라 궁금한 것조차 없는 분들을 위해 기초 강의를 주로 진행합니다.
           </p>
           <p id="shadow">
-            그런데 이번 방학에는 후술할 전시작업을 목표로 하고 있기 때문에 조금 방식이 달라질 수도 있습니다. <a id="link" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">우측 링크</a>를 참고해주세요!
+            그런데 이번 방학에는 후술할 전시작업을 목표로 하고 있기 때문에 조금 방식이 달라질 수도 있습니다. 우측 <a id="link" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">링크</a>를 참고해주세요!
           </p>
           <p style="margin:0 0 50px 0;" id="shadow">
               매주 참석자가 세 분 이상이 되면 그 주의 수업을 진행합니다. 이번 방학때는 제가 인턴을 해서 주말에만 진행할 예정입니다. 참여는 하고싶으면 하고 아니면 말고 자유롭게 결정하시면 됩니다. 부담갖지 마세요. 초코딩 멤버의 90퍼센트는 유령 회원입니다!
@@ -283,7 +426,7 @@
               </span>
           </h1>
           <p  style="margin:0 0 50px 0;" id="shadow">
-              이번 겨울방학 끝나기 전까지 전시작업을 하면 어떨까 계획하고 있습니다. 학과 내 다른 게임 동아리와 협업하여 유니티 공부를 진행하는 것도 고려하고 있는데 <a id="link" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">우측 링크</a>의 투표를 통해 결정하도록 하겠습니다.
+              이번 겨울방학 끝나기 전까지 전시작업을 하면 어떨까 계획하고 있습니다. 학과 내 다른 게임 동아리와 협업하여 유니티 공부를 진행하는 것도 고려하고 있는데 우측 <a id="link" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">링크</a>의 투표를 통해 결정하도록 하겠습니다.
           </p>
 
           <h1>
@@ -325,10 +468,7 @@
               
               <p id="shadow">
                   A. 노트북을 꼭 지참해주시고 <a id="link" href="https://processing.org">processing</a>이나 <a id="link" href="https://unity3d.com/kr">unity</a>를 설치해오시면 더 좋습니다. 참석 전에 
-                      <a id="link" href="https://paper.dropbox.com/doc/processing-JwGtPYTPWN5JuN60qrMID?_tk=share_copylink">
-                          튜토리얼
-                      </a>
-                  을 살펴보고 오시면 더더 좋습니다. (참고로 제가 직접 작성했습니다. 훗.)
+                  <a id="link" href="https://paper.dropbox.com/doc/processing-JwGtPYTPWN5JuN60qrMID?_tk=share_copylink">튜토리얼</a>을 살펴보고 오시면 더더 좋습니다. 참고로 직접 작성했습니다. 그냥 그렇다구요...
               </p>
           </div>
           
