@@ -324,14 +324,14 @@
                 var canvas = document.getElementById("canvas");
                 var ctx = canvas.getContext("2d");
                 if (canvas.getContext) {
-                    ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+                    ctx.fillStyle = "rgb(255, 255, 255)";
                     ctx.beginPath();
                     ctx.arc(this.position.x, this.position.y, radious, 0, Math.PI * 2, 0);
                     ctx.fill();
                     for(var i = this.index + 1; i < balls.length; i++){
                         var b = balls[i];
                         if(b.position.distance(this.position) < 120){
-                            ctx.strokeStyle = "rgba(255, 255, 255, 0.5)";
+                            ctx.strokeStyle = "rgb(255, 255, 255)";
                             ctx.beginPath();
                             ctx.lineWidth = 1.5;
                             ctx.lineTo(b.position.x, b.position.y);
