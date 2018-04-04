@@ -1,618 +1,443 @@
 <!DOCTYPE html>
 <html>
-  <head>
-      
-    <meta  charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>초코딩</title>
-    <script src="https://cdn.rawgit.com/okdalto/okdalto/master/p5/p5.js"type="text/javascript"></script>
-
-      <style> 
-        @media screen and (min-width: 1201px) {
-          body {
-            background: black;
-          }
-          canvas {
-            z-index: -1;  
-            position : fixed;
-            bottom: 0px;
-            left: 0px;
-          }
-
-          .parahraph {
-              width:750px;
-              margin:0 auto;
-              z-index: 2;
-              text-align: left;
-              text-decoration:none;
-              color: white;
-              margin-top: 70px;
-              margin-bottom: 10%;
-              font-size: 1.2em;
-              line-height: 165%;
-          }
+    <head>
+        <meta  charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <title>웹 페이지의 구성 요소</title>
+        <style>
+            @media screen and (max-width:749px){
+                html, body {
+                    z-index: 1;
+                    width: 100%;
+                    height: 100%;
+                }
+                body {
+                    background-color: black;
+                    margin: 0px;
+                    padding: 0px;
+                }
+                aside{
+                    display: none;
+                }
+                nav{
+                    background : rgba(255,255,255);
+                    position: fixed;
+                    top: 0px;
+                    width: 100%;
+                    height: 60px;
+                    z-index: 1;
+                    overflow: hidden;
+                }
+                .leftNav{
+                    margin: 0px;
+                    padding: 0px;
+                    position:absolute;
+                    top: 50%;
+                    left: 10%;
+                    line-height: 3.5%;
+                    background-color: white;
+                    font-size: x-large;
+                    font-weight: 700;
+                }
+                .rightNav{
+                    display: inline-block;
+                    text-decoration: none;
+                    margin: 0px;
+                    padding: 0px;
+                    font-size: x-large;
+                    text-align: right;
+                    position:absolute;
+                    top: 50%;
+                    right: 10%;
+                    line-height: 3.5%;
+                    font-weight: 700;
+                }
+                header{
+                    margin-top: 110px;
+                    font-size: xx-large;
+                    text-align: center;
+                    font-weight: 700;
+                }
+                section{
+                    line-height: 1.4em;
+                    margin-top: 50px;
+                    margin-left: 10%;
+                    margin-right: 10%;
+                    color: white;
+                    text-shadow: 0px 0px 4px black;
+                }
+                a{
+                    text-decoration: none;
+                    color: black;
+                    text-shadow: 1px 1px 0px white;
+                }
+                a:hover{
+                    text-decoration: none;
+                    color: red;
+                    text-shadow: none;
+                }
+                .signIn{
+                    text-decoration: none;
+                    color: black;
+                }
+                .signIn:hover{
+                    text-decoration: none;
+                    color: red;
+                }
+                .leftAside{
+                    display: none;
+                }
+                .rightAside{
+                    display: none;
+                }
+                h1{
+                    color: black;
+                    background-color: white;
+                    border-radius: 5px;
+                    border: 1px solid white;
+                    margin: 0px auto 25px auto;
+                    padding: 10px;
+                    text-shadow: none;
+                    box-shadow: none;
+                }
+                h1:hover{
+                    color: white;
+                    background-color: black;
+                    border: 1px solid white;
+                    margin: 0px auto 25px auto;
+                    padding: 10px;
+                    text-shadow: none;
+                    box-shadow: 0px 0px 20px white;
+                }
+                div{
+                    margin: 0px;
+                }
+                p{
+                    margin: 0px calc(50% - 160px) 20px calc(50% - 160px);
+                    width: 320px;
+                    text-indent: 20px;  
+                }
+                ul{
+                    padding-left: 20px;
+                    margin: 0px calc(50% - 170px) 0px calc(50% - 170px);
+                    width: 320px;
+                }
+                .youtubeWrapper{
+                    height: 200px;
+                    margin: 0px calc(50% - 160px) 25px calc(50% - 160px);
+                }   
+                .content{
+                    width: 100%;
+                    height: 100%;
+                    padding: 0px 0px 20px 0px;
+                }
+                #canvas{
+                    position: fixed;
+                    z-index: -1;
+                    top: 0px;
+                    margin: 0px;
+                    padding: 0px;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            @media screen and (min-width: 750px){
+                html, body {
+                    width: 100%;
+                    height: 100%;
+                }
+                body {
+                    background-color: black;
+                    margin: 0px;
+                    padding: 0px;
+                }
+                aside{
+                }
+                nav{
+                    visibility: hidden
+                }
+                .leftNav{
+                    display: none;
+                }
+                .rightNav{
+                    display: none;
+                }
+                header{
+                    margin-top: 110px;
+                    font-size: xx-large;
+                    text-align: center;
+                    font-weight: 700;
+                }
+                section{
+                    float: left;
+                    line-height: 1.4em;
+                    margin-top: 50px;
+                    margin-left: 20%;
+                    margin-right: 20%;
+                    width: 60%;
+                    color: white;
+                    text-shadow: 0px 0px 4px black;
+                }
+                a{
+                    text-decoration: none;
+                    color: black;
+                    text-shadow: 1px 1px 0px white;
+                }
+                a:hover{
+                    text-decoration: none;
+                    color: red;
+                    text-shadow: none;
+                }
+                .signIn{
+                    text-decoration: none;
+                    color: black;
+                }
+                .signIn:hover{
+                    text-decoration: none;
+                    color: red;
+                }
+                aside{
+                    float: right;
+                    color: white;
+                    text-align: center;
+                }
+                .leftAside{
+                    width: 20%;
+                    position: fixed;
+                    color: white;
+                    font-size: xx-large;
+                    text-align: center;
+                    font-weight: 700;
+                    top: 50%;
+                    right: calc(100%-700px);
+                }
+                .rightAside{
+                    right: 0px;
+                    width: 20%;
+                    position: fixed;
+                    color: white;
+                    font-size: xx-large;
+                    text-align: center;
+                    font-weight: 700;
+                    top: 50%;
+                }
+                h1{
+                    color: black;
+                    background-color: white;
+                    border-radius: 5px;
+                    border: 1px solid white;
+                    margin: 0px auto 20px auto;
+                    padding: 10px;
+                    text-shadow: none;
+                    box-shadow: none;
+                }
+                h1:hover{
+                    color: white;
+                    background-color: black;
+                    border-radius: 5px;
+                    border: 1px solid white;
+                    margin: 0px auto 20px auto;
+                    padding: 10px;
+                    text-shadow: none;
+                    box-shadow: 0px 0px 20px white;
+                }
+                div{
+                    margin: 0px;
+                }
+                p{
+                    margin: 0px calc(50% - 225px) 20px calc(50% - 225px);
+                    width: 450px;
+                    text-indent: 20px;  
+                }
+                ul{
+                    padding-left: 38px;
+                    margin: 0px calc(50% - 244px) 0px calc(50% - 244px);
+                    width: 450px;
+                }
+                .youtubeWrapper{
+                    height: 400px;
+                    margin: 0px calc(50% - 250px) 25px calc(50% - 250px);
+                }
+                .content{
+                    width: 100%;
+                    height: 100%;
+                    padding: 0px 0px 20px 0px;
+                }
+                #canvas{
+                    position: fixed;
+                    z-index: -1;
+                    top: 0px;
+                    margin: 0px;
+                    padding: 0px;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        </style>
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>  
+        <script type="text/javascript"> 
+            $(document).ready(function() {
+                $(".content").hide();
+                $(".heading").click(function() {
+                    $(this).next(".content").slideToggle(500);
+                    $(".content").not($(this).next(".content")).slideUp(500);
+                });
+            });
+        </script> 
+        
+        <script type="application/javascript">
+            var time = 0.0;
+            var pos;
+            var speed;
+            var ballNum = 50;
+            var balls = [];
+            var radious = 5;
             
-            .img
-            {
-              text-align: center;
-              max-width: 100%; 
-              height: auto; 
-              margin:10px 0 20px 0;
+            var vector = function(_x,_y,_z){
+                this.x = _x;
+                this.y = _y;
+                this.z = _z;
             }
-
-          .youtubeWrap{
-            z-index: 1;
-            left: -50%;
-            position:relative;
-            margin: 0px;
-            padding: 0px;
-            width: 100%;
-            padding-bottom:56.25%;
-          }
-          .youtubeWrap iframe{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-          } 
-          
-          #rightWrap{
-            z-index: 3;
-            position: fixed;
-            bottom: 50%;
-            right: calc((100% - 800px)/4);
-          }
-          #right:link{
-            background-color:white;
-            left: 50%;
-            position: relative;
-            text-align: center;
-            text-decoration:none;
-            color: black;
-            font-weight: bold;
-            font-size: 3em;
-          }
-          #right:visited{
-            background-color:white;
-            left: 50%;
-            position: relative;
-            text-align: center;
-            text-decoration:none;
-            color: black;
-            font-weight: bold;
-            font-size: 3em;
-          }
-          #right:hover{
-            background-color:black;
-            left: 50%;
-            position: relative;
-            text-align: center;
-            text-decoration:none;
-            color: white;
-            font-weight: bold;
-            font-size: 3em;
-          }
-          
-          #leftWrap{
-            z-index: 3;
-            text-align: center;
-            position: fixed;
-            bottom: 50%;
-            left: calc((100% - 700px)/4);
-            text-decoration:none;
-            font-weight: bold;
-            font-size: 3em;
-          }
-
-         #left{
-             background-color:white; 
-             color: black; 
-             text-align: center; 
-             position: relative; 
-             left:-50%;          
-            }
-          #end{
-            margin:0 0 120px 0;
-          }
-            
-          #link{
-            background-color:white;
-            text-decoration:none;
-            color: black;
-            text-shadow: black 0px 0px 0px;
-          }
-          #link:hover{
-            background-color:black;
-            text-decoration:none;
-            color: white;
-            text-shadow: black 0px 0px 0px;
-          }
-          #shadow{
-            text-shadow: black 0px 0px 10px;
-          }
-        }
-          
-        @media screen and (min-width: 750px) and (max-width: 1200px){
-          body {
-            background: black;
-          }
-          canvas {
-            z-index: -1;  
-            position : fixed;
-            bottom: 0px;
-            left: 0px;
-          }
-
-          .parahraph {
-            width:550px;
-            margin:0 auto;
-            z-index: 2;
-            text-align: left;
-            text-decoration:none;
-            color: white;
-            margin-top: 40px;
-            margin-bottom: 10%;
-            font-size: 1.1em;
-            line-height: 165%;
-          }
-
-            .img
-            {
-              text-align: center;
-              max-width: 100%; 
-              height: auto; 
-              margin:30px 0 20px 0;
-            }
-
-          .youtubeWrap{
-            z-index: 1;
-            left: -50%;
-            position:relative;
-            margin: 0px;
-            padding: 0px;
-            width: 100%;
-            padding-bottom:56.25%;
-          }
-
-          .youtubeWrap iframe{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-          } 
-          #rightWrap{
-            z-index: 3;
-            position: fixed;
-            top: 50%;
-            right: calc((100% - 550px)/4);
-          }
-          #right:link{
-            background-color:white;
-            left: 50%;
-            position: relative;
-            text-align: center;
-            text-decoration:none;
-            color: black;
-            font-weight: bold;
-            font-size: 1.5em;
-          }
-          #right:visited{
-            background-color:white;
-            left: 50%;
-            position: relative;
-            text-align: center;
-            text-decoration:none;
-            color: black;
-            font-weight: bold;
-            font-size: 1.5em;
-          }
-          #right:hover{
-            background-color:black;
-            left: 50%;
-            position: relative;
-            text-align: center;
-            text-decoration:none;
-            color: white;
-            font-weight: bold;
-            font-size: 1.5em;
-          }
-          #end{
-            margin:0 0 90px 0;
-          }
-          #leftWrap{
-            z-index: 3;
-            text-align: center;
-            position: fixed;
-            top: 50%;
-            left: calc((100% - 550px)/4);
-            text-decoration:none;
-            font-weight: bold;
-            font-size: 1.5em;
-          }
-         #left{
-             background-color:white; 
-             color: black; 
-             text-align: center; 
-             position: relative; 
-             left:-50%;          
+            vector.prototype.distance = function(dist){
+                var xDist = Math.abs(dist.x - this.x);
+                var yDist = Math.abs(dist.y - this.y);
+                return Math.sqrt((xDist * xDist)+(yDist * yDist));
             }
             
-          #link{
-            background-color:white;
-            text-decoration:none;
-            color: black;
-            text-shadow: black 0px 0px 0px;
-          }
-          #link:hover{
-            background-color:black;
-            text-decoration:none;
-            color: white;
-            text-shadow: black 0px 0px 0px;
-          }
-          #shadow{
-            text-shadow: black 0px 0px 10px;
-          }
-        }
-          
-          
-          
-        @media screen and (max-width: 750px) {
-          body {
-            background: black;
-          }
-          canvas {
-            z-index: -1;  
-            position : fixed;
-            bottom: 0px;
-            left: 0px;
-          }
-
-          .parahraph {
-            width:300px;
-            margin:0 auto;
-            z-index: 2;
-            text-align: left;
-            text-decoration:none;
-            color: white;
-            margin-top: 40px;
-            margin-bottom: 10%;
-            font-size: 1.0em;
-            line-height: 165%;
-          }
-
-            .img
-            {
-              text-align: center;
-              max-width: 100%; 
-              height: auto; 
-              margin:60px 0 20px 0;
+            var Ball = function(v, _index){
+                this.index = _index;
+                this.position = new vector(v.x,v.y,0);
+                this.velocity = new vector((Math.random()-0.5) * 3,(Math.random()-0.5) * 3, 0);
+            }
+            
+            Ball.prototype.update = function(){
+                var canvas = document.getElementById("canvas");
+                this.position.x += this.velocity.x;
+                this.position.y += this.velocity.y;
+                if(this.position.x > canvas.width || this.position.x < 0){
+                   this.velocity.x *= -1;
+                }
+                if(this.position.y > canvas.height || this.position.y < 0){
+                   this.velocity.y *= -1;
+                }
+            }
+            
+            Ball.prototype.draw = function(){
+                var canvas = document.getElementById("canvas");
+                var ctx = canvas.getContext("2d");
+                if (canvas.getContext) {
+                    ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+                    ctx.beginPath();
+                    ctx.arc(this.position.x, this.position.y, radious, 0, Math.PI * 2, 0);
+                    ctx.fill();
+                    for(var i = this.index + 1; i < balls.length; i++){
+                        var b = balls[i];
+                        if(b.position.distance(this.position) < 120){
+                            ctx.strokeStyle = "rgba(255, 255, 255, 0.5)";
+                            ctx.beginPath();
+                            ctx.lineWidth = 1.5;
+                            ctx.lineTo(b.position.x, b.position.y);
+                            ctx.lineTo(this.position.x, this.position.y);
+                            ctx.stroke();
+                        }
+                    }
+                }
             }
 
-          .youtubeWrap{
-            z-index: 1;
-            left: -50%;
-            position:relative;
-            margin: 0px;
-            padding: 0px;
-            width: 100%;
-            padding-bottom:56.25%;
-          }
-
-          .youtubeWrap iframe{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-          } 
-          #rightWrap{
-            z-index: 3;
-            position: fixed;
-            top: 3%;
-            right: 5%;
-          }
-          #end{
-            margin:0 0 70px 0;
-          }
-          #left{
-             background-color:white; 
-             color: black; 
-             text-align: center; 
+            function draw(){
+                var canvas = document.getElementById("canvas");
+                var ctx = canvas.getContext("2d");
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for(var i = 0; i < balls.length; i++){
+                    var b = balls[i];
+                    b.update();
+                    b.draw();
+                }
             }
-          #right:link{
-            background-color:white;
-            text-align: center;
-            text-decoration:none;
-            color: black;
-            font-weight: bold;
-            font-size: 1em;
-          }
-          #right:visited{
-            background-color:white;
-            text-align: center;
-            text-decoration:none;
-            color: black;
-            font-weight: bold;
-            font-size: 1em;
-          }
-          #right:hover{
-            background-color:black;
-            text-align: center;
-            text-decoration:none;
-            color: white;
-            font-weight: bold;
-            font-size: 1em;
-          }
-
-          #leftWrap{
-            z-index: 3;
-            text-align: center;
-            position: fixed;
-            top: 3%;
-            left: 5%;
-            text-decoration:none;
-            font-weight: bold;
-            font-size: 1em;
-          }
-          #link{
-            background-color:white;
-            text-decoration:none;
-            color: black;
-            text-shadow: black 0px 0px 0px;
-          }
-          #link:hover{
-            background-color:black;
-            text-decoration:none;
-            color: white;
-            text-shadow: black 0px 0px 0px;
-          }
-          #shadow{
-            text-shadow: black 0px 0px 10px;
-          }
-        }
-
-      </style>
+            
+            function setup(){
+                var canvas = document.getElementById("canvas");
+                var ctx = canvas.getContext("2d");
+                window.addEventListener('resize', resizeCanvas, false);
+                resizeCanvas();
+                for(var i = 0; i < ballNum; i++){
+                    balls.push(new Ball(new vector(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 100),i));
+                }
+                setInterval(function(){draw()},5);
+            }
+            
+            function resizeCanvas() {
+                var canvas = document.getElementById("canvas");
+                var ctx = canvas.getContext("2d");
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                draw();
+            }   
+        </script>
     </head>
-  <body>
-          <div id="rightWrap">
-              <a id="right" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">
-                  가입신청
-              </a>
-          </div>
-          <div id="leftWrap">
-              <span id="left">
-                  초코딩
-              </span>
-          </div>
-      <div class="parahraph">
-          <img class="img" src="https://github.com/okdalto/okdalto/blob/master/img/CHOCO1.png?raw=true">
-          <div id = "end">
-          <h1 align="center">
-              <span style="background-color:white; color: black;">
-                  소개
-              </span>
-          </h1>
-
-          <p id="shadow">
-              ‘초코딩’은 ‘초보자 코딩모임’의 약자로 코딩 하면 떠오르는 딱딱하고 난해한 이미지에서 탈피해 디자이너가 좀 더 쉽게 코딩을 배울 수 있도록 도와주는 영상디자인학과 내 코딩 스터디 동아리입니다. 이 페이지는 연습도 할 겸 심심해서 만들어보았습니다. <a id="link" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">링크</a>를 통해 초코딩 <a id="link" href="https://www.facebook.com/groups/okdalto/">페이스북 페이지</a>에 가입신청하세요!
-          </p>
-          </div>
-        
-          <div id = "end">
-          <h1 align="center">
-              <span style="background-color:white; color: black;">
-                  목표
-              </span>
-          </h1>
-          <div id = "end">
-          <p id="shadow">
-시대는 바야흐로 대 코딩 시대, 4차 산업혁명이 코앞에 다가와 있습니다. 알파고가 바둑계를 재패하고, 맥도날드엔 알바생 대신 키오스크가 주문을 받습니다. 오바마 전 대통령도 <a id="link" href="https://youtu.be/GQqjeAVdpcM">코딩교육의 중요성</a>을 역설하였지요. 이런 상황에서 우리 디자이너는 코딩을 할 줄 알아야 할까요? 글쎄요. 잘 모르겠습니다. 솔직히 굳이 안 배워도 원리만 대충 알면 될 것 같기도 합니다. 
-          </p>
-          <p id="shadow">
-그런데 우리는 왜 코딩을 배울까요? 재미있기 때문입니다! 게임하는데 이유가 어딨어요. 그냥 하는거지. 코딩도 마찬가지입니다. 코딩 재미있습니다. 특히 바로바로 결과물이 보이는 코딩은 더 재미있습니다. 재미 없다구요? 그럼 어쩔 수 없죠...
-          </p>
-          <p id="shadow">
-초코딩은 디자이너에게 쓸모가 있을지도, 없을지도 모르는 코딩 테크닉을 전수하여 왠지 어렵고 있어 보이는 과제를 제출하는 데 도움을 줍니다. 스터디를 통해 초코딩 회원은 지식을 얻어가고 초코딩 회장은 지적 허영심을 충전하는 완벽한 WIN-WIN 체계를 이루고 있습니다.
-          </p>
-        </div>
-        </div>
-        
-          <div id = "end">
-          <h1 align="center">
-              <span style="background-color:white; color: black;">
-                  진행
-              </span>
-          </h1>
-        
-          <p id="shadow">
-              초코딩 주간 정기모임의 일시, 장소 등의 진행사항은 매주 초코딩 <a id="link" href="https://www.facebook.com/groups/okdalto/">페이스북 페이지</a>에 공지되며 해당 공지에 참석 의사를 댓글로 밝히고 참석하시면 됩니다. 초코딩에 가입을 원하는 신규 부원들은 <a id="link" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">링크</a>를 통해 가입신청해주시면 <a id="link" href="https://www.facebook.com/groups/okdalto/">페이스북 페이지</a>에 초대해드리도록 하겠습니다.
-          </p>
-          <p id="shadow">
-              스터디는 그날그날 의견을 받아서 진행하는데 초코대장 맘대로 궁금한 점을 질문받아서 그것에 대한 강의를 진행하거나 신입이라 궁금한 것조차 없는 분들을 위해 기초 강의를 주로 진행합니다.
-          </p>
-          <p id="shadow">
-            그런데 이번 방학에는 후술할 전시작업을 목표로 하고 있기 때문에 조금 방식이 달라질 수도 있습니다. 우측 <a id="link" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">링크</a>를 참고해주세요!
-          </p>
-          <p id="shadow">
-              매주 참석자가 세 분 이상이 되면 그 주의 수업을 진행합니다. 이번 방학때는 제가 인턴을 해서 주말에만 진행할 예정입니다. 참여는 하고싶으면 하고 아니면 말고 자유롭게 결정하시면 됩니다. 부담갖지 마세요. 초코딩 멤버의 90퍼센트는 유령 회원입니다!
-          </p>
-        </div>
-
-          <h1 align="center">
-              <span style="background-color:white; color: black;">
-                  계획
-              </span>
-          </h1>
-        
-          <div id = "end">
-          <p  id="shadow">
-              이번 겨울방학 끝나기 전까지 전시작업을 하면 어떨까 계획하고 있습니다. 학과 내 다른 게임 동아리와 협업하여 유니티 공부를 진행하는 것도 고려하고 있는데 우측 <a id="link" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">링크</a>의 투표를 통해 결정하도록 하겠습니다.
-          </p>
-        </div>
-        
-          <h1 align="center">
-              <span style="background-color:white; color: black;">
-                  작업물
-              </span>
-          </h1>
-          <p id="shadow">
-              동영상으로는 없지만 게임을 포함하여 여러가지 쓸모가 불분명하고 재미있는 것들을 마구 만들어내고 있습니다.
-          </p>
-        
-          <div id = "end">
-          <div style="margin:0 0 20px 0; text-align: center;" class="youtubeWrap">
-              <iframe src="https://www.youtube.com/embed/eNqzOhn6lZA?ecver=1&wmode=transparent" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen >
-              </iframe>
-          </div>
-
-          <div style="margin:0 0 20px 0; text-align: center;" class="youtubeWrap">
-              <iframe src="https://www.youtube.com/embed/mq5LZFnSvc0?ecver=1&wmode=transparent" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen >
-              </iframe>
-          </div>
-
-          <div style="text-align: center;" class="youtubeWrap">
-              <iframe src="https://www.youtube.com/embed/K79eiIeaql4?ecver=1&wmode=transparent" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen >
-              </iframe>
-          </div>
-        </div>
-          
-          <h1 align="center">
-              <span style="background-color:white; color: black;">
-                  자주 묻는 질문
-              </span>
-          </h1>
-          
-          <div id = "end">
-              <h3 align="left" id="shadow">
-                  <b>
-                      Q. 처음 참여하는데 따로 준비해야 할 준비물이 있나요??
-                  </b>
-              </h3>
-              
-              <p style="text-align:right" id="shadow">
-                  A. 노트북을 꼭 지참해주시고 <a id="link" href="https://processing.org">processing</a>이나 <a id="link" href="https://unity3d.com/kr">unity</a>를 설치해오시면 더 좋습니다. 참석 전에 
-                  <a id="link" href="https://paper.dropbox.com/doc/processing-JwGtPYTPWN5JuN60qrMID?_tk=share_copylink">튜토리얼</a>을 살펴보고 오시면 더더 좋습니다. 참고로 직접 작성했습니다. 그냥 그렇다구요...
-              </p>
-          </div>
-          
-          <div id = "end">
-              <h3 align="left" id="shadow">
-                  <b>
-                      Q. 저는 코딩에 대해 진짜 아무것도 모르는데 참여해도 괜찮을까요?
-                  </b>
-              </h3>
-              
-              <p style="text-align:right" id="shadow">
-                  A. 물론입니다. 동아리 이름부터 초보자 코딩모임입니다.
-              </p>
-          </div>
-      
-          <div id = "end">
-              <h3 align="left" id="shadow">
-                  <b>
-                      Q. 그렇지만 다른 사람들에게 민폐가 되진 않을까요?
-                  </b>
-              </h3>
-      
-              <p style="text-align:right" id="shadow">
-                  A. 아닙니다. 저희 다 초보입니다. 오히려 너무 잘 하면 자존심 상합니다.
-              </p>
-          </div>
-          
-          <div id = "end">
-              <h3 align="left" id="shadow">
-                  <b>
-                      Q. 그렇지만 저는 컴프수업 성적도 낮고 컴퓨터도 잘 모르고 그런데요?
-                  </b>
-              </h3>
-              
-              <p style="text-align:right" id="shadow">
-                  A. 우리 모두가 마찬가지입니다.
-              </p>
-          </div>
-
-          <div id = "end">
-              <h3 align="left" id="shadow">
-                  <b>
-                      Q. 아무래도 안되겠어요. 저는 개인적으로 공부를 해서 준비가 되면 참석할래요.
-                  </b>
-              </h3>
-
-              <p style="text-align:right" id="shadow">
-                  A. 본인 자유입니다만 이 분야에선 아는 사람에게 배우면 5분만에 끝날 것을 하루종일 구글링을 하며 고생하게 되는 경우가 특히 많습니다. 하지만 그럼에도 혼자 공부하는 것이 나름의 방법이 될 수 있지요.
-              </p>
-          </div>
-          
-          <div id = "end">
-              <h3 align="left" id="shadow">
-                  <b>
-                      Q. 그래도 안갈래요.
-                  </b>
-              </h3>
-              <p style="text-align:right" id="shadow">
-                  A. 네...
-              </p>
-          </div>
-      
-          
-          <img class="img" src="https://github.com/okdalto/okdalto/blob/master/img/CHOCO1.png?raw=true">
-
-      
-      </div>
-      
-      <script>
-          var ptclList = [];
-          var pp = [];
-          var ballnum = 20;
-
-          function setup() {
-              w = window.innerWidth;
-              h = window.innerHeight;
-              createCanvas(w,h);
-              for(var i = 0 ; i < ballnum; i ++){
-                ptclList.push(new Ptcl(random(0,width),random(0,height),i));
-              }
-          }
-
-          function draw() {
-              background(0);
-              for(var i = 0 ; i < ptclList.length ; i++ ){
-                  ptclList[i].draw();
-              }
-            //beforeMil = window.performance.now();
-          }
-
-          function Ptcl(x, y,start) {
-            this.x = x;
-            this.y = y;
-            this.start = start;
-            this.speedX = random(-1.5,1.5);
-            this.speedY = random(-1.5,1.5);
-          }
-
-          Ptcl.prototype.draw = function() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            if(this.x > width || this.x < 0 ){
-              this.speedX=-this.speedX;
-            }
-            if(this.y > height || this.y < 0 ){
-              this.speedY=-this.speedY;
-            }
-            for(var i = this.start + 1 ; i < ptclList.length ; i++ ){
-              var Dx = ptclList[i].x - this.x ;
-              var Dy = ptclList[i].y - this.y ;
-              var DD = sqrt(sq(Dx)+sq(Dy));
-              if(DD<60){
-                  stroke(255);
-                  line(this.x,this.y,ptclList[i].x,ptclList[i].y);
-              }
-            }
-            //draw ellipse
-            noStroke();
-            ellipse(this.x,this.y,10,10);
-          }
-
-          function windowResized() {
-              w = window.innerWidth;
-              h = window.innerHeight;
-              resizeCanvas(w, h);
-          } 
-      </script>
-  </body>
+    <body onload="setup()">
+        <canvas id = "canvas"></canvas>
+        <nav>
+            <div class="leftNav">
+                초코딩
+            </div>
+            <div class="rightNav">
+                <a class="signIn" href="http://www.naver.com">
+                    가입신청
+                </a>
+            </div>
+        </nav>
+        <header>
+            <span style="background-color: white; border-radius: 5px; padding: 3px">초코딩</span>
+        </header>
+        <aside class="leftAside">
+            초코딩
+        </aside>
+        <section>
+                <h1 class = "heading">초코딩 멤버 99명을 자축하며!</h1>
+                <div class = "content">
+                    <div class ="youtubeWrapper">
+                        <iframe width = 100% height = 100% src="https://www.youtube.com/embed/cDA3_5982h8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen controls = 0>
+                        </iframe>
+                    </div>
+                    <p>
+                    이번 초코딩에서는 제가 로봇이라고 가정하고 초코 여러분들이 제게 땅콩 샌드위치 만드는 법을 가르쳐 줬습니다. 저는 초코님들의 지시를 로봇처럼 정확하게, 그대로 이행하려고 노력했고 그 결과 땅콩 샌드위치를 만들기와 같은 간단한 문제도 로봇에게는 굉장히 어려운 문제라는 것을 알게 되었어요. 함께 샌드위치를 먹으며 여러분들에게 어떤 것을 느꼈는지 물어보았습니다. 다양한 의견이 있었어요.
+                    </p>
+                </div>
+                <h1 class="heading">의견들</h1>
+                <div class = "content">
+                    <ul>
+                        <li>로봇은 융통성이 없어서 짜증난다.</li>
+                        <li>지시를 굉장히 디테일하게 적어야 했다.</li>
+                        <li>쓸데없는 지시는 안 하는 것이 낫다.</li>
+                        <li>샌드위치가 비위생적으로 보인다.</li>
+                        <li>우리가 평소 쓰는 말은 굉장히 함축적이라는 것을 알게 됐다.</li>
+                        <li>우리가 쓰는 단어들은 가끔 여러 의미를 담고 있을 때가 있다.</li>
+                    </ul>
+                </div>
+            <h1 class="heading">ㅈㅁㅇㅇㄴㅁㅇ</h1>
+            <div class = "content">
+            <p>
+            하나하나 재미있는 의견들이었습니다. 확실히 사람이면 ’샌드위치 만들어 줘’ 한마디에 눈치껏 알아서 할 일을 로봇은 융통성 없이 잘못된 지시도 정확하게 실행해버리죠. 또한 평소 생각하지 않던 순서 (비닐봉지를 뜯는다. 숟가락을 사용하고 나서 책상 위에 올려둔다. 등)에 대해서 디테일한 생각을 해 보아야 하는 부분이 있었구요. 쓸데없는 단어를 썼다가 오히려 원하지 않는 방식으로 작동해서 당황스럽기도 했습니다. 빵을 손에 들고 있으라고 적지 않고 ‘쥐고 있으라’고 적었기 때문에 제가 빵을 말 그대로 ‘쥐고’ 있어서 상당히 지저분해 보이는 샌드위치를 만들기도 했구요. 또 우리가 쓰는 말이 문맥, 몸짓, 상황 등에 따라 얼마나 함축적인 의미가 있는지, 그리고 같은 단어인데도 얼마나 많은 의미를 지니는 경우가 많은지를 알 수 있었습니다.
+            </p>
+            <p>
+            말씀해주신 의견 대부분이 코딩을 하면서 익숙해져야 할 중요한 개념들이라고 생각했습니다. 확실히 프로세싱으로 컴퓨터에 명령을 할 때는 우리가 생각하기에 별로 중요하지 않은 것 같은 잡다한 것들 (예를들어 int를 넣을 자리에 float을 넣는다거나, 세미콜론을 빼먹었거나, 대문자를 소문자로 썼다거나)에 대해서 예민하게 생각해야만 하죠. 또 프로세싱에서 ‘=‘ 과 ‘==‘이 다른 것처럼 같은 단어인데도 다른 의미를 가지고 있는 것들은 뜻을 분리해서 다른 상황에서 사용한다고 생각해야 하고요. 그리고 ‘키보드로  apple이라고 작성해봐’ 같은 심플한 문제들도 로봇에게 명령하기 위해서는 ‘키보드 좌상단의 xy좌표가 0cm,0cm 이라고 생각했을 때, x로 20cm를 가고 오른쪽으로 10cm를 가서 y축으로 손가락을 -방향으로 움직여 a를 누른다.’ 와 같이 굉장히 구체적으로 명령해야겠죠. 이런 중요하면서 어렵게(추상적으로) 느껴지는 사실을 샌드위치를 만들며 쉽고 재미있게 배울 수 있었다고 생각합니다. 마치 유치원으로 돌아간 것 같은 느낌이었죠.
+            </p>
+            <p>
+            이전에 최승준 선생님의 수업을 들었을 때 교수님께서 <a href="http://web.media.mit.edu/~mres/papers/kindergarten-learning-approach.pdf">'창조적 생각을 위해 내가 알아야 할 모든 것은 유치원생들이 어떻게 배우는가를 관찰하며 배웠다.'</a>라는 글을 참고자료로 올리신 적이 있었어요. 이제서야 이걸 찬찬히 읽어보았는데 초코딩을 운영하며 알아야겠다 싶은 내용이 많았습니다. 오늘날 어린이들에게 창의력을 배우는 것은 무엇보다도 중요합니다. 우리는 창의적인 대처를 요구하는 많은 상황에 부딪치게 됩니다. 불행하게도 대부분의 학교가 오늘날의 필요와는 거리가 먼 것들을 재미없게 가르치고 있습니다. 그리고 저는 제가 이런 교육 현실의 피해자라고 생각합니다. 학교에서 배우는 많은 것들(특히 수학)이 너무 재미가 없었거든요. 지금 다니고 있는 학교에서도 몇몇 수업에서는 내가 왜 이 수업을 왜 듣고 있나 하고 느끼기도 하고요. (거만하게 느껴지지 않았으면 합니다. 진짜 재미가 없어서 그런 것이라..)
+            </p>
+            <p>
+            대학교에 와서 코딩을 배우며, 그리고 최승준 선생님의 강의를 들으며 수학과 코딩에 대한 흥미와 용기를 다시 회복하게 되었습니다. (물론 흥미가 있다는 것이지 제가 잘한다는 것은 전혀 아닙니다.) 코딩을 하면 할수록 점점 어린 시절 레고를 가지고 놀 때의 느낌이 들더라고요. 그런 방법으로 수포자라고 자부하는 저는 초등학교 6년, 중학교 3년 고등학교 3년 총 12년 동안 배운 것보다도 더 많은 것들을 학습할 수 있었습니다. 이런 학습의 과정은 이 글에 나온 것과 비슷했습니다. 자신의 아이디어를 키우고, 시도해보고, 한계를 시험해보고, 대체물을 실험하고, 다른 사람에게서 배우고, 그리고 가장 중요한, 경험으로부터 새로운 생각을 만들어내고.
+            </p>
+            <p>
+            저는 대학교에 와서 실망을 많이 했습니다. 무언가 대단하고, 새로운 것을 재미있게 배울 수 있을 줄 알았는데 어떤 수업들은 고등학교 수업의 연장선이나 다름없었죠. 달달 외우고, 시험을 보고, 의미 없는 과제를 하고… 알고 보니 다른 많은 사람도 이런 수업들에 대한 불만을 느끼고 있었어요. 그런데 불만만 품고 있어서는 바뀌는 것이 없었어요. 그리고 일개 학생이 따진다고 뭐가 순식간에 바뀔까요? 어쩌겠습니까 그냥 참고 다녀야지. 그렇다고 자퇴를 할 수도 없는 노릇이니까요. 
+            </p>
+            <p>
+            여기서 우리가 할 수 있는 것은 무엇일까요? 저는 초코딩을 통해 연대하여 빅 브라더에 저항할 수 있다고 생각합니다. 초코딩에서 우리는 기존 제도를 떠나 다시 유치원으로 돌아갑니다. 초코딩의 목표는 아이디어를 키우고, 시도해보고, 한계를 시험해보고, 대체물을 실험하고, 다른 사람에게서 배우고, 그리고 경험으로부터 새로운 생각을 만들어내는 것입니다. 지금 초코딩이 이런 목표에 부합하는 집단인지는 모르겠지만 어쨌거나 시행착오를 거쳐서 목표로 가고 있다고 생각합니다. 지금 가입하세요!!
+            </p>
+            </div>
+        </section>
+        <aside class="rightAside">
+            가입신청
+        </aside>
+    </body>
 </html>
