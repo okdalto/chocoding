@@ -18,11 +18,22 @@
                 aside{
                     display: none;
                 }
-                img{
+                .chocoPicture{
                     position:absolute;
                     width:70%; height:auto;
                     margin:auto auto 30% auto;
                     top:0; bottom:0; left:0; right:0;
+                }
+                img{
+                    width: 90%;
+                    margin: 0px 5% 5px 5%;
+                }
+                figure{
+                    margin: 0px; padding-top: 0px;
+                }
+                figcaption{
+                    text-align: right;
+                    margin: 0px 5% 5px 5%;
                 }
                 .navigation{
                     background : black;
@@ -131,6 +142,10 @@
                     width: 308px;
                     text-indent: 20px;  
                     line-height: 1.6em;
+                    font-weight: 200;
+                }
+                span{
+                    font-weight: 900;
                 }
                 ul{
                     padding-left: 20px;
@@ -297,7 +312,7 @@
             }
         </style>
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
-        <script type="text/javascript" src="https://cdn.rawgit.com/okdalto/okdalto/master/library/jQueryRotateCompressed.js"></script>
+        <script type="text/javascript" src="http://beneposto.pl/jqueryrotate/js/jQueryRotateCompressed.js"></script>
         <script type="text/javascript"> 
             $(document).ready(function() {
                 var textHeight = $(".chocoTitle").offset().top-30;
@@ -349,6 +364,7 @@
             var ballNum = 30;
             var balls = [];
             var radious = 5;
+            var vel = 1;
             
             var vector = function(_x,_y,_z){
                 this.x = _x;
@@ -364,7 +380,7 @@
             var Ball = function(v, _index){
                 this.index = _index;
                 this.position = new vector(v.x,v.y,0);
-                this.velocity = new vector((Math.random()-0.5) * 3,(Math.random()-0.5) * 3, 0);
+                this.velocity = new vector((Math.random()-0.5) * vel,(Math.random()-0.5) * vel, 0);
             }
             
             Ball.prototype.update = function(){
@@ -436,7 +452,6 @@
         <canvas id = "canvas"></canvas>
         <nav class = "navigation">
             <div class="leftNav">
-                초코딩
             </div>
             <div class="rightNav">
                 <a class="signIn" href="http://www.naver.com">
@@ -450,7 +465,7 @@
                     초코딩
                 </div>
             </div>
-                <img src="img/CHOCO.png" alt="이미지를 표현할 수 없습니다.">
+                <img class="chocoPicture" src="img/CHOCO.png" alt="이미지를 표현할 수 없습니다.">
         </header>
         <aside class="leftAside">
             초코딩
@@ -461,16 +476,25 @@
                       <path d="M48 0 V 95 L 4 50 H 0 L 50 100 L 100 50 H 96 L 52 95 V 0 Z" stroke="white" fill="white" />
                 </svg>
                 <h1>
-                        무엇을 하는 집단인가?
+                    코딩? 그런 걸 왜 해요?
                 </h1>
             </div>
                 <div class = "content">
+<!--
                     <div class ="youtubeWrapper">
                         <iframe width = 100% height = 100% src="https://www.youtube.com/embed/cDA3_5982h8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen controls = 0>
                         </iframe>
                     </div>
+-->
                     <p>
-                    이번 초코딩에서는 제가 로봇이라고 가정하고 초코 여러분들이 제게 땅콩 샌드위치 만드는 법을 가르쳐 줬습니다. 저는 초코님들의 지시를 로봇처럼 정확하게, 그대로 이행하려고 노력했고 그 결과 땅콩 샌드위치를 만들기와 같은 간단한 문제도 로봇에게는 굉장히 어려운 문제라는 것을 알게 되었어요. 함께 샌드위치를 먹으며 여러분들에게 어떤 것을 느꼈는지 물어보았습니다. 다양한 의견이 있었어요.
+                        영상디자인학과와 소프트웨어학과를 동시에 다니며 가장 많이 들었던 질문은 <span>디자이너가 코딩을 왜 해요?</span> 였습니다. 글쎄요, 왜 하는 걸까요? 이런 종류의 질문 솔직히 지겹습니다. 저는 디자이너가 코딩 안 해도 된다고 생각합니다. 적당히 기초를 아는 건 어느정도 도움이 되겠지만 더 깊게 파고들어야 할 필요는 없다고 생각합니다. 근데 그럼 너는 왜 하냐? 고 물으실지 모르겠습니다.
+                    </p>
+                    <figure>
+                        <img src="img/game.png">
+                        <figcaption><a>출처 링크</a></figcaption>
+                    </figure>
+                    <p>
+                        혹시 게임 좋아하시나요? 저는 굉장히 좋아합니다. 근데 누가 저한테 게임 왜 하냐고 묻는다면 딱히 할 말이 없을 것 같습니다. 그냥 하는거죠. 코딩도 마찬가지입니다. 재미있어서 그냥 합니다. 굉장히 재수없는 대답인가요? 근데 저라고 코딩이 다 재미있는 건 아닙니다. 자료구조 배울 때는 솔직히 좀 재미 없습니다. 시스템 소프트웨어도 그렇게 막 재미있진 않습니다. 제가 좋아하는 건 <span>눈으로 보이는</span> 컴퓨터 그래픽스 분야입니다. 그렇다고 최신 컴퓨터 그래픽스 기술이라고 무조건 좋아하는 건 또 아닙니다. 새로운 자료구조를 사용해서 렌더링 성능을 10% 향상시켰다? 재미 없습니다. 제게 흥미로운 분야는 어떻게 컴퓨터를 사용해서 <span>아름다운</span> 이미지를 만들어내느냐? 입니다. 
                     </p>
                 </div>
                 <div class = "heading">
