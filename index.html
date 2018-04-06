@@ -18,56 +18,79 @@
                 aside{
                     display: none;
                 }
-                nav{
-                    background : white;
+                img{
+                    position:absolute;
+                    width:70%; height:auto;
+                    margin:auto auto 30% auto;
+                    top:0; bottom:0; left:0; right:0;
+                }
+                .navigation{
+                    background : black;
+                    border-bottom: 1px solid white;
                     position: fixed;
                     top: 0px;
                     width: 100%;
                     height: 60px;
                     z-index: 1;
                 }
+                .titleWrapper{
+                    color: white;
+                    position: absolute;
+                    margin: 0px; padding: 0px;
+                    top: 105%; left: 5%;
+                    z-index: 2;
+                }
+                .titleWrapper>.chocoTitle{
+                    color: white;
+                    z-index: 2;
+                    position: static;
+                    top: 30px; left: 5%;
+                    line-height: 3.5%;
+                }
                 .leftNav{
-                    margin: 0px;
-                    padding: 0px;
+/*
+                    color: white;
+                    margin: 0px; padding: 0px;
                     position:absolute;
-                    top: 50%;
-                    left: 10%;
+                    top: 200px; left: 10%;
                     line-height: 3.5%;
                     background-color: white;
                     font-size: x-large;
-                    font-weight: 700;
+                    font-weight: 600;
+*/
                 }
                 .rightNav{
                     display: inline-block;
                     text-decoration: none;
                     margin: 0px;
                     padding: 0px;
-                    font-size: x-large;
+                    font-size: large;
                     text-align: right;
                     position:absolute;
                     top: 50%;
-                    right: 10%;
+                    right: 5%;
                     line-height: 3.5%;
-                    font-weight: 700;
+                    font-weight: 600;
                 }
                 header{
-                    margin-top: 110px;
+                    margin: 0px 0px 90px 0px;
+                    padding: 0px;
                     font-size: xx-large;
                     text-align: center;
                     font-weight: 700;
+                    height: 100%;
                 }
                 section{
                     line-height: 1.4em;
                     margin-top: 50px;
-                    margin-left: 10%;
-                    margin-right: 10%;
+                    margin-left: 5%;
+                    margin-right: 5%;
                     color: white;
                     text-shadow: 0px 0px 4px black;
                 }
                 a{
                     text-decoration: none;
-                    color: black;
-                    text-shadow: 1px 1px 0px white;
+                    color: white;
                 }
                 a:hover{
                     text-decoration: none;
@@ -76,7 +99,7 @@
                 }
                 .signIn{
                     text-decoration: none;
-                    color: black;
+                    color: white;
                 }
                 .signIn:hover{
                     text-decoration: none;
@@ -93,7 +116,7 @@
                     background-color: white;
                     border-radius: 5px;
                     border: 1px solid white;
-                    margin: 0px auto 25px auto;
+                    margin: 0px 0.1% 25px 0.1%;
                     padding: 10px;
                     text-shadow: none;
                     box-shadow: none;
@@ -107,13 +130,11 @@
                     text-shadow: none;
                     box-shadow: 0px 0px 20px white;
                 }
-                div{
-                    margin: 0px;
-                }
                 p{
-                    margin: 0px calc(50% - 140px) 20px calc(50% - 140px);
-                    width: 280px;
+                    margin: 0px calc(50% - 154px) 20px calc(50% - 154px);
+                    width: 308px;
                     text-indent: 20px;  
+                    line-height: 1.6em;
                 }
                 ul{
                     padding-left: 20px;
@@ -130,7 +151,7 @@
                     padding: 0px 0px 20px 0px;
                 }
                 #canvas{
-                    position: fixed;
+                    position: absolute;
                     z-index: -1;
                     top: 0px;
                     margin: 0px;
@@ -275,10 +296,27 @@
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
         <script type="text/javascript"> 
             $(document).ready(function() {
+                var textHeight = $(".chocoTitle").offset().top-30;
                 $(".content").hide();
+                $(".navigation").hide();
                 $(".heading").click(function() {
                     $(this).next(".content").slideToggle(500);
                     $(".content").not($(this).next(".content")).slideUp(500);
+                });
+                
+                $(window).scroll(function() {
+                    if($(this).scrollTop() >= textHeight) {
+                        $(".navigation").fadeIn(200);
+                        $(".chocoTitle").css("position", "fixed")
+                    }
+                    else {
+                        $(".navigation").fadeOut(200);
+                        $(".chocoTitle").css("position", "static")
+                    }
+                });
+                
+                $(window).resize(function(){
+                     textHeight = $(".chocoTitle").offset().top-30;
                 });
             });
         </script> 
@@ -375,24 +413,29 @@
     </head>
     <body onload="setup()">
         <canvas id = "canvas"></canvas>
-        <nav>
+        <nav class = "navigation">
             <div class="leftNav">
                 초코딩
             </div>
             <div class="rightNav">
                 <a class="signIn" href="http://www.naver.com">
-                    가입신청
+                    가입신청 링크
                 </a>
             </div>
         </nav>
         <header>
-            <span style="background-color: white; border-radius: 5px; padding: 3px">초코딩</span>
+            <div class="titleWrapper">
+                <div class = "chocoTitle">
+                    초코딩
+                </div>
+            </div>
+                <img src="img/CHOCO.png" alt="이미지를 표현할 수 없습니다.">
         </header>
         <aside class="leftAside">
             초코딩
         </aside>
         <section>
-                <h1 class = "heading">초코딩 멤버 99명을 자축하며!</h1>
+                <h1 class = "heading">멤버 99명을 자축하며!</h1>
                 <div class = "content">
                     <div class ="youtubeWrapper">
                         <iframe width = 100% height = 100% src="https://www.youtube.com/embed/cDA3_5982h8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen controls = 0>
