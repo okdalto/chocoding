@@ -348,10 +348,8 @@
         <script type="text/javascript" src="https://cdn.rawgit.com/okdalto/okdalto/master/library/jQueryRotateCompressed.js"></script>
         <script>
             $(document).ready(function() {
-                var textHeight = $(".chocoTitle").offset().top -15;
                 $(".heading").children(".rotateReset").rotate({animateTo:90})
                 $(".content").hide();
-                $(".navigation").hide();
                 
                 $(".heading").click(function() {
                     var cl = $(this).children("svg:first").attr("class");
@@ -364,25 +362,7 @@
                     }
                     $(this).next(".content").slideToggle(500);
                 });
-                
-                $(window).scroll(function() {
-                    if($(this).scrollTop() >= textHeight){
-                        $(".navigation").fadeIn(100);
-                        $(".chocoTitle").css("position", "fixed");
-                        $(".chocoTitle").css("border-bottom", "none");
-                        $(".chocoTitleRight").css("visibility", "hidden");
-                    }else{
-                        $(".navigation").fadeOut(100);
-                        $(".chocoTitle").css("position", "static")
-                        $(".chocoTitle").css("border-bottom", "1px solid white");
-                        $(".chocoTitleRight").css("visibility", "visible");
-                    }
-                });
-                
-                $(window).resize(function(){
-                     textHeight = $(".chocoTitle").offset().top-15;
-                });
-                
+                                
                 function rotate(obj) {
                     obj.rotate({animateTo:0});
                 }
