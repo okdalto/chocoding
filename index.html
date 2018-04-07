@@ -184,13 +184,13 @@
                     padding: 0px 0px 20px 0px;
                 }
                 #canvas{
-                    position: absolute;
+                    position: fixed;
                     z-index: -1;
                     top: 0px;
                     margin: 0px;
                     padding: 0px;
                     width: 100%;
-                    height: 60%;
+                    height: 100%;
                 }
             }
             @media screen and (min-width: 750px){
@@ -348,13 +348,13 @@
                     padding: 0px 0px 20px 0px;
                 }
                 #canvas{
-                    position: absolute;
+                    position: fixed;
                     z-index: -1;
                     top: 0px;
                     margin: 0px;
                     padding: 0px;
                     width: 100%;
-                    height: 60%;
+                    height: 100%;
                 }
             }
         </style>
@@ -408,7 +408,7 @@
             var time = 0.0;
             var pos;
             var speed;
-            var ballNum = 50;
+            var ballNum = 30;
             var balls = [];
             var radious = 5;
             var vel = 1;
@@ -446,14 +446,14 @@
                 var canvas = document.getElementById("canvas");
                 var ctx = canvas.getContext("2d");
                 if (canvas.getContext) {
-                    ctx.fillStyle = "rgb(255, 255, 255)";
+                    ctx.fillStyle = "rgb(100,100,100)";
                     ctx.beginPath();
                     ctx.arc(this.position.x, this.position.y, radious, 0, Math.PI * 2, 0);
                     ctx.fill();
                     for(var i = this.index + 1; i < balls.length; i++){
                         var b = balls[i];
                         if(b.position.distance(this.position) < 90){
-                            ctx.strokeStyle = "rgb(255, 255, 255)";
+                            ctx.strokeStyle = "rgb(100,100,100)";
                             ctx.beginPath();
                             ctx.lineWidth = 1.5;
                             ctx.lineTo(b.position.x, b.position.y);
