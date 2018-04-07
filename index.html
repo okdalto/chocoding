@@ -360,9 +360,9 @@
         </style>
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
         <script type="text/javascript" src="https://cdn.rawgit.com/okdalto/okdalto/master/library/jQueryRotateCompressed.js"></script>
-        <script type="text/javascript"> 
+        <script>
             $(document).ready(function() {
-                var textHeight = $(".chocoTitle").offset().top -34;
+                var textHeight = $(".chocoTitle").offset().top -15;
                 $(".heading").children(".rotateReset").rotate({animateTo:90})
                 $(".content").hide();
                 $(".navigation").hide();
@@ -383,18 +383,18 @@
                     if($(this).scrollTop() >= textHeight){
                         $(".navigation").fadeIn(100);
                         $(".chocoTitle").css("position", "fixed");
-                        $(".signIn").css("position", "fixed");
                         $(".chocoTitle").css("border-bottom", "none");
+                        $(".chocoTitleRight").css("visibility", "hidden");
                     }else{
                         $(".navigation").fadeOut(100);
                         $(".chocoTitle").css("position", "static")
-                        $(".signIn").css("position", "static")
                         $(".chocoTitle").css("border-bottom", "1px solid white");
+                        $(".chocoTitleRight").css("visibility", "visible");
                     }
                 });
                 
                 $(window).resize(function(){
-                     textHeight = $(".chocoTitle").offset().top-34;
+                     textHeight = $(".chocoTitle").offset().top-15;
                 });
                 
                 function rotate(obj) {
@@ -408,7 +408,7 @@
             var time = 0.0;
             var pos;
             var speed;
-            var ballNum = 30;
+            var ballNum = 50;
             var balls = [];
             var radious = 5;
             var vel = 1;
@@ -496,16 +496,20 @@
         </script>
     </head>
     <body onload="setup()">
-        <header>
-            <canvas id = "canvas"></canvas>
-            <div class="rightNav">
+        <canvas id = "canvas"></canvas>
+        <nav class = "navigation">
                 <a class="signIn" href="http://www.naver.com">
                     가입신청 링크
                 </a>
-            </div>
+        </nav>
+        <header>
+                
             <div class="titleWrapper">
                 <div class = "chocoTitle">
                     초코딩
+                </div>
+                <div class = "chocoTitleRight">
+                    가입신청 링크
                 </div>
             </div>
                 <img class="chocoPicture" src="img/CHOCO.png" alt="이미지를 표현할 수 없습니다.">
