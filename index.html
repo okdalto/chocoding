@@ -452,7 +452,7 @@
                     ctx.fill();
                     for(var i = this.index + 1; i < balls.length; i++){
                         var b = balls[i];
-                        if(b.position.distance(this.position) < window.innerHeight*0.2){
+                        if(b.position.distance(this.position) < 60){
                             ctx.strokeStyle = "rgb(100,100,100)";
                             ctx.beginPath();
                             ctx.lineWidth = 1.5;
