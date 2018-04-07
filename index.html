@@ -408,7 +408,7 @@
             var time = 0.0;
             var pos;
             var speed;
-            var ballNum = 30;
+            var ballNum = 20;
             var balls = [];
             var radious = 5;
             var vel = 1;
@@ -452,7 +452,7 @@
                     ctx.fill();
                     for(var i = this.index + 1; i < balls.length; i++){
                         var b = balls[i];
-                        if(b.position.distance(this.position) < 90){
+                        if(b.position.distance(this.position) < window.innerHeight*0.2){
                             ctx.strokeStyle = "rgb(100,100,100)";
                             ctx.beginPath();
                             ctx.lineWidth = 1.5;
@@ -490,7 +490,7 @@
                 var canvas = document.getElementById("canvas");
                 var ctx = canvas.getContext("2d");
                 canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight*0.6;
+                canvas.height = window.innerHeight;
                 draw();
             }   
         </script>
