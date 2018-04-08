@@ -5,7 +5,7 @@
         <title></title>
         <style>
             @import url('https://fonts.googleapis.com/css?family=Gothic+A1:400,800');
-            @media screen and (max-width:749px){
+            @media screen and (max-width:799px){
                 .chocoPicture{
                     position:static;
                     margin: 0% calc(50% - 155px) 0% calc(50% - 155px);
@@ -37,15 +37,17 @@
                     margin: 0 calc(50% - 155px) 0 calc(50% - 155px);
                     padding: 0;
                     width: 310px;
-                    font-size: 0.8em;
+                    font-size: 10px;
                 }
                 figcaption .captionLeft{
+                    font-size: 10px;
                     text-align: left;
                     margin: 0; padding: 0;
                     width: 65%;
                     float: left;
                 }
                 figcaption .captionRight{
+                    font-size: 10px;
                     text-align: right;
                     margin: 0 0 14px 0; padding: 0;
                     width: 35%;
@@ -54,7 +56,27 @@
                 }
                 .navigation{
                     background : black;
-                    border-bottom: 1px solid white;
+                    border-bottom: 2px solid white;
+                    position: fixed;
+                    top: 0px;
+                    width: 100%;
+                    height: 60px;
+                    z-index: 1;
+                    font-weight: 800;
+                }
+                .navigation.noBorder{
+                    background : black;
+                    border-bottom: none;
+                    position: fixed;
+                    top: 0px;
+                    width: 100%;
+                    height: 60px;
+                    z-index: 1;
+                    font-weight: 800;
+                }                
+                .navigation.noBorder{
+                    background : black;
+                    border-bottom: none;
                     position: fixed;
                     top: 0px;
                     width: 100%;
@@ -81,6 +103,7 @@
                     height: 100%;
                 }
                 .signIn{
+                    font-size: 18px;
                     text-align: right;
                     display: inline-block;
                     margin: 0;
@@ -90,6 +113,7 @@
                     padding-top: 18px;
                 }
                 .signIn:hover{
+                    font-size: 18px;
                     text-align: right;
                     display: inline-block;
                     margin: 0;
@@ -130,12 +154,12 @@
                     display: none;
                 }
                 h1{
-                    font-size: 1.0em;
-                    width: 70%;
+                    font-size: 18px;
+                    width: 77%;
                     color: white;
-                    border-bottom: 1px solid white;
-                    margin: 0 12% 32px 0px;
-                    padding: 10px 10px 5px 3px;
+                    border-bottom: 2px solid white;
+                    margin: 0 0 37px 0px;
+                    padding: 10px 0px 5px 5px;
                     z-index: 1;
                 }
                 svg{
@@ -150,9 +174,9 @@
                     margin: 0px calc(50% - 150px) 20px calc(50% - 150px);
                     width: 300px;
                     text-indent: 20px;  
-                    line-height: 1.8em;
+                    line-height: 1.9em;
                     font-weight: 400;
-                    font-size: 0.9em;
+                    font-size: 13px;
                 }
                 p>span{
                     font-weight: 800;
@@ -181,11 +205,11 @@
                     height: 100%;
                 }
             }
-            @media screen and (min-width: 750px){
+            @media screen and (min-width: 800px) and (max-width: 1200px){
                 .chocoPicture{
                     position:absolute;
-                    margin: 0% calc(50% - 155px) 0% calc(50% - 155px);
-                    width: 310px;
+                    margin: 0% calc(50% - 210px) 0% calc(50% - 210px);
+                    width: 420px;
                     top:77%; bottom:0; left:0; right:0;
                 }
                 html, body {
@@ -201,35 +225,37 @@
                     display: none;
                 }
                 section img{
-                    margin: 0 calc(50% - 280px) 0 calc(50% - 280px);
-                    width: 560px;
+                    margin: 0 calc(50% - 150px) 0 calc(50% - 150px);
+                    width: 300px;
                 }
                 figure{
                     margin: 0; padding: 0;
                     font-weight: 800;
                 }
                 figcaption{
-                    margin: 0 calc(50% - 280px) 0 calc(50% - 280px);
+                    margin: 0 calc(50% - 150px) 0 calc(50% - 150px);
                     padding: 0;
-                    width: 560px;
-                    font-size: 0.8em;
+                    width: 300px;
+                    font-size: 10px;
                 }
                 figcaption .captionLeft{
+                    font-size: 10px;
                     text-align: left;
                     margin: 0; padding: 0;
-                    width: 60%;
+                    width: 65%;
                     float: left;
                 }
                 figcaption .captionRight{
+                    font-size: 10px;
                     text-align: right;
-                    margin: 0 0 7px 0; padding: 0;
-                    width: 40%;
+                    margin: 0 0 14px 0; padding: 0;
+                    width: 35%;
                     float: left;
                     font-weight: 400;
                 }
                 .navigation{
                     background : black;
-                    border-bottom: 1px solid white;
+                    border-bottom: 2px solid white;
                     position: fixed;
                     top: 0px;
                     width: 100%;
@@ -237,6 +263,16 @@
                     z-index: 1;
                     font-weight: 800;
                 }
+                .navigation.noBorder{
+                    background : black;
+                    border-bottom: none;
+                    position: fixed;
+                    top: 0px;
+                    width: 100%;
+                    height: 60px;
+                    z-index: 1;
+                    font-weight: 800;
+                }                
                 .navigation>.navLeft{
                     display: inline-block;
                     padding: 0; margin: 0;
@@ -249,6 +285,7 @@
                     padding: 13px 0 0 6%;;
                 }
                 .navigation>.navRight{
+                    font-size: 18px;
                     text-align: right;
                     display: inline-block;
                     padding: 0; margin: 0;
@@ -299,9 +336,11 @@
                     text-shadow: none;
                 }
                 h1{
+                    font-size: 18px;
                     color: white;
-                    border-bottom: 1px solid white;
-                    margin: 0 12% 32px 10px;
+                    width: 77%;
+                    border-bottom: 2px solid white;
+                    margin: 0 12% 50px 0px;
                     padding: 10px 10px 10px 3px;
                     z-index: 1;
                 }
@@ -314,10 +353,198 @@
                     float: right;
                 }
                 p{
-                    margin: 0px calc(50% - 280px) 10px calc(50% - 280px);
-                    width: 560px;
+                    font-size: 16px;
+                    margin: 0px calc(50% - 150px) 20px calc(50% - 150px);
+                    width: 300px;
                     text-indent: 20px;  
-                    line-height: 1.6em;
+                    line-height: 2.0em;
+                    font-weight: 400;
+                }
+                p>span{
+                    font-weight: 800;
+                }
+                .youtubeWrapper{
+                    height: 320px;
+                    margin: 0px calc(50% - 150px) 25px calc(50% - 150px);
+                }   
+                .content{
+                    width: 100%;
+                    height: 100%;
+                    padding: 0px 0px 20px 0px;
+                    overflow: hidden;
+                }
+                .content>.contentLeft{
+                    width: 50%;
+                    float: left;
+                    padding: 0px 0px 0px 0px;
+                }
+                .content>.contentRight{
+                    width: 50%;
+                    float: left;
+                }
+                #canvas{
+                    position: fixed;
+                    z-index: -1;
+                    top: 0px;
+                    margin: 0px;
+                    padding: 0px;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            @media screen and (min-width: 1200px){
+                .chocoPicture{
+                    position:absolute;
+                    margin: 0% calc(50% - 300px) 0% calc(50% - 300px);
+                    width: 600px;
+                    top:70%; bottom:0; left:0; right:0;
+                }
+                html, body {
+                    z-index: 1;
+                    width: 100%; height: 100%;
+                    font-family: 'Gothic A1';
+                }
+                body {
+                    background-color: black;
+                    margin: 0px 0px 500px 0px; padding: 0;
+                }
+                aside{
+                    display: none;
+                }
+                section img{
+                    margin: 0 calc(50% - 225px) 0 calc(50% - 225px);
+                    width: 450px;
+                }
+                figure{
+                    margin: 0; padding: 0;
+                    font-weight: 800;
+                }
+                figcaption{
+                    margin: 0 calc(50% - 225px) 0 calc(50% - 225px);
+                    padding: 0;
+                    width: 450px;
+                    font-size: 10px;
+                }
+                figcaption .captionLeft{
+                    font-size: 12px;
+                    text-align: left;
+                    margin: 0; padding: 0;
+                    width: 65%;
+                    float: left;
+                }
+                figcaption .captionRight{
+                    font-size: 12px;
+                    text-align: right;
+                    margin: 0 0 14px 0; padding: 0;
+                    width: 35%;
+                    float: left;
+                    font-weight: 400;
+                }
+                .navigation{
+                    background : black;
+                    border-bottom: 2px solid white;
+                    position: fixed;
+                    top: 0px;
+                    width: 100%;
+                    height: 60px;
+                    z-index: 1;
+                    font-weight: 800;
+                }
+                .navigation.noBorder{
+                    background : black;
+                    border-bottom: none;
+                    position: fixed;
+                    top: 0px;
+                    width: 100%;
+                    height: 60px;
+                    z-index: 1;
+                    font-weight: 800;
+                }                
+                .navigation>.navLeft{
+                    display: inline-block;
+                    padding: 0; margin: 0;
+                    color: white;
+                    width: 40%;
+                    font-size: xx-large;
+                    vertical-align: bottom;
+                    font-weight: 800;
+                    height: 100%;
+                    padding: 13px 0 0 6%;;
+                }
+                .navigation>.navRight{
+                    font-size: 18px;
+                    text-align: right;
+                    display: inline-block;
+                    padding: 0; margin: 0;
+                    width: 50%;
+                    height: 100%;
+                }
+                .signIn{
+                    text-align: right;
+                    display: inline-block;
+                    margin: 0;
+                    width: 50%;
+                    height: 100%;
+                    padding-right: 6%;
+                    padding-top: 18px;
+                }
+                .signIn:hover{
+                    text-align: right;
+                    display: inline-block;
+                    margin: 0;
+                    width: 50%;
+                    height: 100%;
+                    padding-right: 6%;
+                    padding-top: 18px;
+                }
+                header{
+                    margin: 0px 0px 0px 0px;
+                    padding: 0px;
+                    font-size: xx-large;
+                    text-align: center;
+                    font-weight: 400;
+                    height: 100%;
+                }
+                section{
+                    line-height: 1.4em;
+                    margin-top: 50px;
+                    margin-bottom: 200px;
+                    margin-left: 10%;
+                    margin-right: 10%;
+                    color: white;
+                }
+                a{
+                    text-decoration: none;
+                    color: white;
+                }
+                a:hover{
+                    text-decoration: none;
+                    color: red;
+                    text-shadow: none;
+                }
+                h1{
+                    font-size: 18px;
+                    width: 77%;
+                    color: white;
+                    border-bottom: 2px solid white;
+                    margin: 0 auto 50px 0px;
+                    padding: 10px 10px 10px 3px;
+                    z-index: 1;
+                }
+                svg{
+                    margin: 0px; padding: 8px;
+                    float: right;
+                }
+                .rotateReset{
+                    margin: 0px; padding: 8px;
+                    float: right;
+                }
+                p{
+                    font-size: 16px;
+                    margin: 0px calc(50% - 225px) 20px calc(50% - 225px);
+                    width: 450px;
+                    text-indent: 20px;  
+                    line-height: 2.0em;
                     font-weight: 400;
                 }
                 p>span{
@@ -329,13 +556,24 @@
                     width: 320px;
                 }
                 .youtubeWrapper{
+                    width: 450px;
                     height: 320px;
-                    margin: 0px calc(50% - 280px) 25px calc(50% - 280px);
+                    margin: 0px calc(50% - 225px) 20px calc(50% - 225px);
                 }   
                 .content{
                     width: 100%;
                     height: 100%;
                     padding: 0px 0px 20px 0px;
+                    overflow: hidden;
+                }
+                .content>.contentLeft{
+                    width: 50%;
+                    float: left;
+                    padding: 0px 0px 0px 0px;
+                }
+                .content>.contentRight{
+                    width: 50%;
+                    float: left;
                 }
                 #canvas{
                     position: fixed;
@@ -366,7 +604,14 @@
                     }
                     $(this).next(".content").slideToggle(500);
                 });
-                                
+                $(window).scroll(function() {
+                    if($(this).scrollTop() <= window.innerHeight*0.1){ 
+                        $(".navigation").addClass("noBorder")
+                    }else{
+                        $(".navigation").removeClass("noBorder")
+                    }
+                });
+
                 function rotate(obj) {
                     obj.rotate({animateTo:0});
                 }
@@ -467,7 +712,7 @@
     </head>
     <body onload="setup()">
         <canvas id = "canvas"></canvas>
-        <nav class = "navigation">
+        <nav class = "navigation noBorder">
             <div class="navLeft">
                 초코딩
             </div>
@@ -490,52 +735,60 @@
                 </h1>
             </div>
                 <div class = "content">
-                    <p>
-                        영상디자인학과와 소프트웨어학과를 동시에 다니며 가장 많이 들었던 질문은 <span>디자이너가 코딩을 왜 해요?</span> 였습니다. 글쎄요, 왜 하는 걸까요? 이런 종류의 질문 솔직히 지겹습니다. 저는 디자이너가 코딩 안 해도 된다고 생각합니다. 적당히 기초를 아는 건 어느정도 도움이 되겠지만 더 깊게 파고들어야 할 필요는 없다고 생각합니다. 근데 그럼 너는 왜 하냐? 고 물으실지 모르겠습니다.
-                    </p>
-                    <figure>
-                        <img src="img/game.png">
-                        <figcaption><div class = "captionLeft">이유가 어딨어요? 그냥 하는거지</div> 
-                            <div class = "captionRight">이미지 출처 :<a href="http://www.thisisgame.com/webzine/series/nboard/213/?series=42&n=46723"> 링크</a></div>
-                        </figcaption>
-                    </figure>
-                    <p>
-                        혹시 게임 좋아하시나요? 저는 굉장히 좋아합니다. 근데 누가 저한테 게임 왜 하냐고 묻는다면 딱히 할 말이 없을 것 같습니다. 그냥 하는거죠. 코딩도 마찬가지입니다. 재미있어서 그냥 합니다. 굉장히 재수없는 대답인가요? 근데 저라고 코딩이 다 재미있는 건 아닙니다. 자료구조 배울 때는 솔직히 좀 재미 없습니다. 시스템 소프트웨어도 그렇게 막 재미있진 않습니다. 제가 좋아하는 건 <span>눈으로 보이는</span> 컴퓨터 그래픽스 분야입니다. 그렇다고 최신 컴퓨터 그래픽스 기술이라면 무조건 다 좋아하는 건 또 아닙니다. 새로운 자료구조를 사용해서 렌더링 성능을 10% 향상시켰다? 별로 재미 없습니다. 제게 흥미로운 분야는 <span>어떻게 컴퓨터를 사용해서 아름다운 이미지를 만들어내느냐?</span> 입니다. 
-                    </p>
-                    <p>
-                        이렇게 이야기하니까 좀 디자이너 같은가요? 그렇습니다. 저는 공학자가 아닌 디자이너입니다. 다만 컴퓨터를 도구로 사용할 뿐이죠. 사실 대부분의 디자이너들이 컴퓨터를 써서 디자인하잖아요? 그거나 이거나 비슷합니다. 그냥 좀 특이한 도구를 사용하는 디자이너라고 보시면 될 것 같습니다. 사실 요새는 별로 특이하지도 않지요. 너무나 많은 분들이 코딩을 사용한 작업을 하고 계시니까요!
-                    </p>
+                    <div class = "contentLeft">
+                        <p>
+                            영상디자인학과와 소프트웨어학과를 동시에 다니며 가장 많이 들었던 질문은 <span>디자이너가 코딩을 왜 해요?</span> 였습니다. 글쎄요, 왜 하는 걸까요? 이런 종류의 질문 솔직히 지겹습니다. 저는 디자이너가 코딩 안 해도 된다고 생각합니다. 적당히 기초를 아는 건 어느정도 도움이 되겠지만 더 깊게 파고들어야 할 필요는 없다고 생각합니다. 근데 그럼 너는 왜 하냐? 고 물으실지 모르겠습니다.
+                        </p>
+                        <figure>
+                            <img src="img/game.png">
+                            <figcaption><div class = "captionLeft">이유가 어딨어요? 그냥 하는거지</div> 
+                                <div class = "captionRight">이미지 출처 :<a href="http://www.thisisgame.com/webzine/series/nboard/213/?series=42&n=46723"> 링크</a></div>
+                            </figcaption>
+                        </figure>
+                        <p>
+                            혹시 게임 좋아하시나요? 저는 굉장히 좋아합니다. 근데 누가 저한테 게임 왜 하냐고 묻는다면 딱히 할 말이 없을 것 같습니다. 그냥 하는거죠. 코딩도 마찬가지입니다. 재미있어서 그냥 합니다. 굉장히 재수없는 대답인가요? 근데 저라고 코딩이 다 재미있는 건 아닙니다. 자료구조 배울 때는 솔직히 좀 재미 없습니다. 시스템 소프트웨어도 그렇게 막 재미있진 않습니다. 제가 좋아하는 건 <span>눈으로 보이는</span> 컴퓨터 그래픽스 분야입니다. 그렇다고 최신 컴퓨터 그래픽스 기술이라면 무조건 다 좋아하는 건 또 아닙니다. 새로운 자료구조를 사용해서 렌더링 성능을 10% 향상시켰다? 별로 재미 없습니다. 제게 흥미로운 분야는 <span>어떻게 컴퓨터를 사용해서 아름다운 이미지를 만들어내느냐?</span> 입니다. 
+                        </p>
+                    </div>
+                    <div  class = "contentRight">
+                        <p>
+                            이렇게 이야기하니까 좀 디자이너 같은가요? 그렇습니다. 저는 공학자가 아닌 디자이너입니다. 다만 컴퓨터를 도구로 사용할 뿐이죠. 사실 대부분의 디자이너들이 컴퓨터를 써서 디자인하잖아요? 그거나 이거나 비슷합니다. 그냥 좀 특이한 도구를 사용하는 디자이너라고 보시면 될 것 같습니다. 사실 요새는 별로 특이하지도 않지요. 너무나 많은 분들이 코딩을 사용한 작업을 하고 계시니까요!
+                        </p>
+                    </div>
                 </div>
                 <div class = "heading">
                     <svg class = "rotateReset" width="25px" height="25px" viewBox="0 0 100 100">
                           <path d="M48 0 V 95 L 4 50 H 0 L 50 100 L 100 50 H 96 L 52 95 V 0 Z" stroke="white" fill="white" />
                     </svg>
-                    <h1>코딩으로 뭘 하는데요?</h1>
+                    <h1>코딩으로 뭘 할 수 있는데요?</h1>
                 </div>
                 <div class = "content">
-                    <p>
-                        원 그리기부터 시작해서 엄청나게 복잡한 이미지를 만들어내기까지 다양한 작업들을 할 수 있죠. 사실 뭘 만들 수 있느냐는 질문은 마치 레고로 뭘 만들 수 있는데요? 라고 물어보는 것과 비슷하다고 생각합니다. 
-                    </p>
-                    <figure>
-                        <img src="img/legoCar.jpg">
-                        <figcaption>
-                            <div class="captionLeft">레고로 자동차도 만들더라구요.</div>
-                            <div class = "captionRight">이미지 출처 :<a href="https://www.extremetech.com/extreme/173167-worlds-first-full-size-lego-car-can-hit-20-mph-powered-by-insane-1048-piston-compresed-air-engine"> 링크</a></div>
-                        </figcaption>
-                    </figure>
-                    <p>레고에도 설계도는 있지만 꼭 설계도대로 만들어야만 하는 건 아니죠. 뭘 만드는지는 각자의 생각에 달려 있고 저희는 뭘 만드는 과정을 좀 도와주는 것 뿐입니다. 생각해보면 여러분이 쓰는 일러스트레이터나 포토샵 맥스 마야 애프터 이펙트 등의 도구들은 전부 코딩으로 만들어져 있잖아요? 코딩도 결국 도구일 뿐입니다.
-                    </p>
-                    <div class="youtubeWrapper">
-                        <iframe src="https://www.youtube.com/embed/eNqzOhn6lZA?ecver=1&wmode=transparent" width = 100% height = 100% frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen >
-                        </iframe>
+                    <div class = "contentLeft">
+                        <p>
+                            원 그리기부터 시작해서 엄청나게 복잡한 이미지를 만들어내기까지 다양한 작업들을 할 수 있죠. 사실 뭘 만들 수 있느냐는 질문은 마치 레고로 뭘 만들 수 있는데요? 라고 물어보는 것과 비슷하다고 생각합니다. 
+                        </p>
+                        <figure>
+                            <img src="img/legoCar.jpg">
+                            <figcaption>
+                                <div class="captionLeft">레고로 자동차도 만들더라구요.</div>
+                                <div class = "captionRight">이미지 출처 :<a href="https://www.extremetech.com/extreme/173167-worlds-first-full-size-lego-car-can-hit-20-mph-powered-by-insane-1048-piston-compresed-air-engine"> 링크</a></div>
+                            </figcaption>
+                        </figure>
+                        <p>레고에도 설계도는 있지만 꼭 설계도대로 만들어야만 하는 건 아니죠. 뭘 만드는지는 각자의 생각에 달려 있고 저희는 뭘 만드는 과정을 좀 도와주는 것 뿐입니다. 생각해보면 여러분이 쓰는 일러스트레이터나 포토샵 맥스 마야 애프터 이펙트 등의 도구들은 전부 코딩으로 만들어져 있잖아요? 코딩도 결국 도구일 뿐입니다.
+                        </p>
                     </div>
-                    <div class="youtubeWrapper">
-                        <iframe width = 100% height = 100% src="https://www.youtube.com/embed/FuBLRkqY0_8?ecver=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <div class = "contentRight">
+                        <div class="youtubeWrapper">
+                            <iframe src="https://www.youtube.com/embed/eNqzOhn6lZA?ecver=1&wmode=transparent" width = 100% height = 100% frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen >
+                            </iframe>
+                        </div>
+                        <div class="youtubeWrapper">
+                            <iframe width = 100% height = 100% src="https://www.youtube.com/embed/FuBLRkqY0_8?ecver=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
+                        <div class="youtubeWrapper">
+                            <iframe width = 100% height = 100% src="https://www.youtube.com/embed/K79eiIeaql4?ecver=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        </div>
                     </div>
-                    <div class="youtubeWrapper">
-                        <iframe width = 100% height = 100% src="https://www.youtube.com/embed/K79eiIeaql4?ecver=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                    </div>
-                </div>
+            </div>
             <div class = "heading">
                 <svg class = "rotateReset" width="25px" height="25px" viewBox="0 0 100 100">
                       <path d="M48 0 V 95 L 4 50 H 0 L 50 100 L 100 50 H 96 L 52 95 V 0 Z" stroke="white" fill="white" />
@@ -543,18 +796,22 @@
                 <h1>초코딩은 뭔가요?</h1>
             </div>
             <div class = "content">
-            <p>
-                이제야 소개를 드리는군요. 초코딩은 ‘초보자의 코딩 동아리’의 약자로 국민대학교에서 제가 코딩에 관심이 있는 디자이너(물론 디자이너가 아니어도 괜찮습니다.)들을 위해 운영하고 있는 코딩 스터디 동아리입니다. 주로 프로세싱이나 유니티를 공부하고 있구요. 학과나 학교, 나이 학번 기간 등에 관계 없이 인원을 받고 있어요. 회원수는 백 명이 넘지만 유령회원이 그 중 3분의 2정도 되기 때문에 부담 가지지 않고 막 들어오셔도 됩니다! 코딩이 내 길이 아니라는 사실을 알게 된 것도 나름대로의 수확이라고 할 수 있죠.
-            </p>
-                <figure>
-                        <img src="img/legoChoco.jpg">
-                        <figcaption style="text-align: right">
-                            이미지 출처 :<a href="https://www.youtube.com/watch?v=GJUpfa6n1HY"> 링크</a>
-                        </figcaption>
-                </figure>
-            <p>
-                초코딩은 규칙이 존재하지 않는 자유로운 스터디 모임입니다. 초코딩 멤버들은 이 동아리에서 자신의 아이디어를 키우고, 시도해보고, 한계에 도전해보고, 대체물을 실험해보고, 다른 사람에게서 배우며, 경험으로부터 배우게 됩니다. 초코딩 멤버들은 이런 과정에서 동료를 찾고, 서로 자랑하고, 실패에 두려워하지 않는 용기를 배웁니다. 배우려는 만큼 배워갈 수 있을 거예요. 이 과정에서 저는 뭘 얻냐구요? 저는 저의 실력을 자랑할 수 있는 기회를 얻죠. 초코딩에서 여러분들은 배우고 저는 자존감을 회복하는 <span>1석 2조의 WIN-WIN 체계</span>를 경험하실 수 있습니다.
-            </p>
+                <div class = "contentLeft">
+                    <p>
+                        이제야 소개를 드리는군요. 초코딩은 ‘초보자의 코딩 동아리’의 약자로 국민대학교에서 제가 코딩에 관심이 있는 디자이너(물론 디자이너가 아니어도 괜찮습니다.)들을 위해 운영하고 있는 코딩 스터디 동아리입니다. 주로 프로세싱이나 유니티를 공부하고 있구요. 학과나 학교, 나이 학번 기간 등에 관계 없이 인원을 받고 있어요. 회원수는 백 명이 넘지만 유령회원이 그 중 3분의 2정도 되기 때문에 부담 가지지 않고 막 들어오셔도 됩니다! 코딩이 내 길이 아니라는 사실을 알게 된 것도 나름대로의 수확이라고 할 수 있죠.
+                    </p>
+                    <figure>
+                            <img src="img/legoChoco.jpg">
+                            <figcaption style="text-align: right">
+                                이미지 출처 :<a href="https://www.youtube.com/watch?v=GJUpfa6n1HY"> 링크</a>
+                            </figcaption>
+                    </figure>
+                </div>
+                <div class = "contentRight">
+                    <p>
+                        초코딩은 규칙이 존재하지 않는 자유로운 스터디 모임입니다. 초코딩 멤버들은 이 동아리에서 자신의 아이디어를 키우고, 시도해보고, 한계에 도전해보고, 대체물을 실험해보고, 다른 사람에게서 배우며, 경험으로부터 배우게 됩니다. 초코딩 멤버들은 이런 과정에서 동료를 찾고, 서로 자랑하고, 실패에 두려워하지 않는 용기를 배웁니다. 배우려는 만큼 배워갈 수 있을 거예요. 이 과정에서 저는 뭘 얻냐구요? 저는 저의 실력을 자랑할 수 있는 기회를 얻죠. 초코딩에서 여러분들은 배우고 저는 자존감을 회복하는 <span>1석 2조의 WIN-WIN 체계</span>를 경험하실 수 있습니다.
+                    </p>
+                </div>
             </div>
 <div class = "heading">
                 <svg class = "rotateReset" width="25px" height="25px" viewBox="0 0 100 100">
@@ -563,18 +820,22 @@
                 <h1>왜 프로세싱인가요?</h1>
             </div>
             <div class = "content">
-            <p>
-                초코딩에서는 주로 시각적인 결과물이 쉽게 나오는 프로세싱과 유니티를 이용해서 쓸모가 불분명하고 재미있는 것들을 만들어내고 있습니다. 시각적인 피드백은 비단 디자이너 뿐만 아니라 코딩을 처음 접하는 사람에게 아주 중요하지요. 결과물이 안 보이면 재미도 없고 이해하기도 어려우니까요! 
-            </p>
-                <figure>
-                        <img src="img/c-processing-scratch.jpg">
-                        <figcaption style="margin-bottom:7px;">
-                            위에서부터 C언어, 프로세싱, 스크래치의 느낌.
-                        </figcaption>
-                </figure>
-            <p>
-                처음 코딩을 배우는 사람들이 주로 접하는 파이썬은 물론 아주아주 좋은 도구이지만, 시각적인 피드백을 얼마나 쉽게 받을 수 있는가 하는 측면에서 본다면 프로세싱이 더 우위에 있다고 생각합니다. 그렇다고 스크래치를 하기엔 이건 요새 초등학생도 한다는데 대학생이나 돼서 뭔가 자존심 상하는 느낌을 받는 것 같구요. 그래서 우리는 프로세싱과 유니티를 이용합니다!
-            </p>
+                <div class = "contentLeft">
+                <p>
+                    초코딩에서는 주로 시각적인 결과물이 쉽게 나오는 프로세싱과 유니티를 이용해서 쓸모가 불분명하고 재미있는 것들을 만들어내고 있습니다. 시각적인 피드백은 비단 디자이너 뿐만 아니라 코딩을 처음 접하는 사람에게 아주 중요하지요. 결과물이 안 보이면 재미도 없고 이해하기도 어려우니까요! 
+                </p>
+                    <figure>
+                            <img src="img/c-processing-scratch.jpg">
+                            <figcaption style="margin-bottom:7px;">
+                                위에서부터 C언어, 프로세싱, 스크래치의 느낌.
+                            </figcaption>
+                    </figure>
+                </div>
+                <div class = "contentLeft">
+                    <p>
+                        처음 코딩을 배우는 사람들이 주로 접하는 파이썬은 물론 아주아주 좋은 도구이지만, 시각적인 피드백을 얼마나 쉽게 받을 수 있는가 하는 측면에서 본다면 프로세싱이 더 우위에 있다고 생각합니다. 그렇다고 스크래치를 하기엔 이건 요새 초등학생도 한다는데 대학생이나 돼서 뭔가 자존심 상하는 느낌을 받는 것 같구요. 그래서 우리는 프로세싱과 유니티를 이용합니다!
+                    </p>
+                </div>
             </div>
         </section>
     </body>
