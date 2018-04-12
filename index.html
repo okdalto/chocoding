@@ -602,14 +602,13 @@
                 'void main()',
                 '{',
                 '  vec2 uv = (gl_FragCoord.xy/u_resolution.xy);',
-                '  uv = vec2(uv.x * u_resolution , uv.y * u_resolution.y);',
+                '  uv = vec2(uv.x * u_resolution.x , uv.y * u_resolution.y);',
                 '  vec4 tex = texture2D(u_image, uv) + 0.01;',
                 '  float dist = distance(vec2(mousePos), uv);',
                 '  float col1 = noise(vec2(uv.x*2.0+time*0.1,uv.y*2.0));',
                 '  float col2 = noise(vec2(uv.x*sin(time)+time*0.01,uv.y*5.0));',
                 '  float finalCol = min((col1 + col2) * 2.0, 0.8);',
-                '  finalCol = 0.5-finalCol;',
-                '  gl_FragColor = vec4(vec3(finalCol),1.0);',
+                '  gl_FragColor = vec4(vec3(finalCol)-0.5,1.0);',
                 '}'
             ].join('\n');
             
