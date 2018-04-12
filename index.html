@@ -602,7 +602,7 @@
                 'void main()',
                 '{',
                 '  vec2 uv = (gl_FragCoord.xy/u_resolution.xy);',
-                '  uv = vec2(uv.x * u_resolution , uv.y * u_resolution.y);'
+                '  uv = vec2(uv.x * u_resolution , uv.y * u_resolution.y);',
                 '  vec4 tex = texture2D(u_image, uv) + 0.01;',
                 '  float dist = distance(vec2(mousePos), uv);',
                 '  float col1 = noise(vec2(uv.x*2.0+time*0.1,uv.y*2.0));',
