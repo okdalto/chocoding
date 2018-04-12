@@ -7,10 +7,10 @@
             @import url('https://fonts.googleapis.com/css?family=Gothic+A1:400,800');
             @media screen and (max-width:799px){
                 .chocoPicture{
-                    position:static;
+                    position:absolute;
                     margin: 0% calc(50% - 155px) 0% calc(50% - 155px);
-                    margin: 130px auto 0 auto;
                     width: 310px;
+                    top:70%; bottom:0; left:0; right:0;
                 }
                 html, body {
                     z-index: 1;
@@ -33,7 +33,7 @@
                     margin: 0 calc(50% - 155px) 34px calc(50% - 155px);
                     padding: 0;
                     width: 310px;
-                    font-size: 10px;
+                    font-size: 12px;
                 }
                 figcaption .captionLeft{
                     text-align: left;
@@ -85,10 +85,7 @@
                 header{
                     margin: 0px 0px 0px 0px;
                     padding: 0px;
-                    font-size: xx-large;
-                    text-align: center;
-                    font-weight: 400;
-                    height: 300px;
+                    height: 0px;
                 }
                 section{
                     line-height: 1.4em;
@@ -101,11 +98,13 @@
                 a{
                     text-decoration: none;
                     color: white;
+                    font-weight:800;
                 }
                 a:hover{
                     text-decoration: none;
                     color: red;
                     text-shadow: none;
+                    font-weight:800;
                 }
                 .leftAside{
                     display: none;
@@ -158,8 +157,8 @@
                     height: 100%;
                     padding: 0px 0px 20px 0px;
                 }
-                #canvas{
-                    position: fixed;
+                #canv{
+                    position: static;
                     z-index: -1;
                     top: 0px;
                     margin: 0px;
@@ -260,10 +259,7 @@
                 header{
                     margin: 0px 0px 0px 0px;
                     padding: 0px;
-                    font-size: xx-large;
-                    text-align: center;
-                    font-weight: 400;
-                    height: 100%;
+                    height: 10%;
                 }
                 section{
                     line-height: 1.4em;
@@ -276,11 +272,13 @@
                 a{
                     text-decoration: none;
                     color: white;
+                    font-weight:800;
                 }
                 a:hover{
                     text-decoration: none;
                     color: red;
                     text-shadow: none;
+                    font-weight:800;
                 }
                 h1{
                     font-size: 18px;
@@ -329,14 +327,22 @@
                     width: 50%;
                     float: left;
                 }
-                #canvas{
-                    position: fixed;
+                #canv{
+                    position: static;
                     z-index: -1;
                     top: 0px;
                     margin: 0px;
                     padding: 0px;
                     width: 100%;
                     height: 100%;
+                }
+                .question{
+                    font-size: 16px;
+                    margin: 0px calc(50% - 300px) 20px calc(50% - 300px);
+                    width: 600px;
+                    text-indent: 20px;  
+                    line-height: 2.0em;
+                    font-weight: 400;
                 }
             }
             @media screen and (min-width: 1200px){
@@ -430,10 +436,7 @@
                 header{
                     margin: 0px 0px 0px 0px;
                     padding: 0px;
-                    font-size: xx-large;
-                    text-align: center;
-                    font-weight: 400;
-                    height: 100%;
+                    height: 20%;
                 }
                 section{
                     line-height: 1.4em;
@@ -446,11 +449,13 @@
                 a{
                     text-decoration: none;
                     color: white;
+                    font-weight:800;
                 }
                 a:hover{
                     text-decoration: none;
                     color: red;
                     text-shadow: none;
+                    font-weight:800;
                 }
                 h1{
                     font-size: 18px;
@@ -505,14 +510,22 @@
                     width: 50%;
                     float: left;
                 }
-                #canvas{
-                    position: fixed;
+                #canv{
+                    position: static;
                     z-index: -1;
                     top: 0px;
                     margin: 0px;
                     padding: 0px;
                     width: 100%;
                     height: 100%;
+                }
+                .question{
+                    font-size: 16px;
+                    margin: 0px calc(50% - 400px) 20px calc(50% - 400px);
+                    width: 800px;
+                    text-indent: 20px;  
+                    line-height: 2.0em;
+                    font-weight: 400;
                 }
             }
         </style>
@@ -522,6 +535,7 @@
             $(document).ready(function() {
                 $(".heading").children(".rotateReset").rotate({animateTo:90})
                 $(".content").hide();
+                $(".navigation").fadeOut();
                 
                 $(".heading").click(function() {
                     var cl = $(this).children("svg:first").attr("class");
@@ -532,12 +546,15 @@
                         $(this).children("svg").attr("class", "rotateReset");
                         $(this).children("svg").rotate({animateTo:90});
                     }
+                    
                     $(this).next(".content").slideToggle(500);
                 });
                 $(window).scroll(function() {
                     if($(this).scrollTop() <= window.innerHeight*0.1){ 
+                        $(".navigation").fadeOut();
                         $(".navigation").addClass("noBorder")
                     }else{
+                        $(".navigation").fadeIn();
                         $(".navigation").removeClass("noBorder")
                     }
                 });
@@ -548,106 +565,258 @@
 
             });
         </script> 
-        
-        <script type="application/javascript">
-            var time = 0.0;
-            var pos;
-            var speed;
-            var ballNum = 20;
-            var balls = [];
-            var radious = 5;
-            var vel = 1;
+        <script type="text/javascript">
             
-            var vector = function(_x,_y,_z){
-                this.x = _x;
-                this.y = _y;
-                this.z = _z;
-            }
-            vector.prototype.distance = function(dist){
-                var xDist = Math.abs(dist.x - this.x);
-                var yDist = Math.abs(dist.y - this.y);
-                return Math.sqrt((xDist * xDist)+(yDist * yDist));
-            }
+            var vertexShaderText = 
+            [
+                'attribute vec2 vertPosition;',
+                'void main()',
+                '{',
+                'gl_Position = vec4(vertPosition, 0.0, 1.0);',
+                '}'
+            ].join('\n');
             
-            var Ball = function(v, _index){
-                this.index = _index;
-                this.position = new vector(v.x,v.y,0);
-                this.velocity = new vector((Math.random()-0.5) * vel,(Math.random()-0.5) * vel, 0);
-            }
+            var fragmentShaderText = 
+            [
+                'precision mediump float;',
+                'uniform vec2 mousePos;',
+                'uniform sampler2D u_image;',
+                'uniform vec2 u_resolution;',
+                'uniform float time;',
+ 
+                'vec2 random2(vec2 st){',
+                '    st = vec2( dot(st,vec2(127.1,311.7)),',
+                '              dot(st,vec2(269.5,183.3)) );',
+                '    return -1.0 + 2.0*fract(sin(st)*43758.5453123);',
+                '}',
+                
+                'float noise(vec2 st) {',
+                '    vec2 i = floor(st);',
+                '    vec2 f = fract(st);',
+                '    vec2 u = f*f*(3.0-2.0*f);',
+                '    return mix( mix( dot( random2(i + vec2(0.0,0.0) ), f - vec2(0.0,0.0) ), ',
+                '                     dot( random2(i + vec2(1.0,0.0) ), f - vec2(1.0,0.0) ), u.x),',
+                '                mix( dot( random2(i + vec2(0.0,1.0) ), f - vec2(0.0,1.0) ), ',
+                '                     dot( random2(i + vec2(1.0,1.0) ), f - vec2(1.0,1.0) ), u.x), u.y);',
+                '}',
+                'void main()',
+                '{',
+                '  vec2 uv = (gl_FragCoord.xy/u_resolution.xy);',
+                '  vec4 tex = texture2D(u_image, uv) + 0.01;',
+                '  float dist = distance(vec2(mousePos), uv);',
+                '  float col1 = noise(vec2(uv.x*2.0+time*0.1,uv.y*2.0));',
+                '  float col2 = noise(vec2(uv.x*sin(time)+time*0.01,uv.y*5.0));',
+                '  float col3 = random2(vec2(uv.x*100.0+time*0.01,uv.y*cos(time)*20.0)).x;',
+                '  float finalCol = min(col1 + col2 + col3 * 2.0, 0.8);',
+                '  finalCol = 0.5-finalCol;',
+                '  gl_FragColor = vec4(vec3(finalCol),1.0);',
+                
+                '}'
+            ].join('\n');
             
-            Ball.prototype.update = function(){
-                var canvas = document.getElementById("canvas");
-                this.position.x += this.velocity.x;
-                this.position.y += this.velocity.y;
-                if(this.position.x > canvas.width - radious || this.position.x - radious < 0){
-                   this.velocity.x *= -1;
-                }
-                if(this.position.y > canvas.height - radious || this.position.y - radious < 0){
-                   this.velocity.y *= -1;
-                }
-            }
+            var fragmentShaderText2 = 
+            [
+                'precision mediump float;',
+                'uniform sampler2D u_image;',
+                'uniform vec2 u_resolution;',
+                'uniform float time;',
+                'void main()',
+                '{',
+                '  vec2 uv = (gl_FragCoord.xy/u_resolution.xy);',
+                '  vec3 col1 = texture2D(u_image, vec2(uv.x+0.0,uv.y)).xyz;',
+                '  vec3 col2 = texture2D(u_image, vec2(uv.x+sin(time),uv.y)).xyz;',
+                '  vec3 col3 = texture2D(u_image, vec2(uv.x-0.01,uv.y)).xyz;',
+                '  vec3 finalCol = vec3(col1.x,col2.y,col3.z);',
+                '  gl_FragColor = vec4(uv.y-(finalCol*0.5),1.0);',
+                '}'
+            ].join('\n');
             
-            Ball.prototype.draw = function(){
-                var canvas = document.getElementById("canvas");
-                var ctx = canvas.getContext("2d");
-                if (canvas.getContext) {
-                    ctx.fillStyle = "rgb(100,100,100)";
-                    ctx.beginPath();
-                    ctx.arc(this.position.x, this.position.y, radious, 0, Math.PI * 2, 0);
-                    ctx.fill();
-                    for(var i = this.index + 1; i < balls.length; i++){
-                        var b = balls[i];
-                        if(b.position.distance(this.position) < 60){
-                            ctx.strokeStyle = "rgb(100,100,100)";
-                            ctx.beginPath();
-                            ctx.lineWidth = 1.5;
-                            ctx.lineTo(b.position.x, b.position.y);
-                            ctx.lineTo(this.position.x, this.position.y);
-                            ctx.stroke();
-                        }
-                    }
-                }
+            var mouseX = 0;
+            var mouseY = 0;
+            var time = 0;
+            
+            var get_position_of_mousePointer = function( event ) { 
+                mouseX = event.clientX;
+                mouseY = event.clientY;
             }
+            var setup = function(){
+                var canvas = document.getElementById('canv');
+                console.log("working");
+                var gl = canvas.getContext('webgl');
 
-            function draw(){
-                var canvas = document.getElementById("canvas");
-                var ctx = canvas.getContext("2d");
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                for(var i = 0; i < balls.length; i++){
-                    var b = balls[i];
-                    b.update();
-                    b.draw();
+                var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+                var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+                var fragmentShader2 = gl.createShader(gl.FRAGMENT_SHADER);
+                
+                gl.shaderSource(vertexShader, vertexShaderText);
+                gl.shaderSource(fragmentShader, fragmentShaderText);
+                gl.shaderSource(fragmentShader2, fragmentShaderText2);
+                
+                gl.compileShader(vertexShader);
+                if(!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)){
+                   console.error('error',gl.getShaderInfoLog(vertexShader));
+                    return;
                 }
-            }
-            
-            function setup(){
-                var canvas = document.getElementById("canvas");
-                var ctx = canvas.getContext("2d");
-                window.addEventListener('resize', resizeCanvas, false);
-                resizeCanvas();
-                for(var i = 0; i < ballNum; i++){
-                    balls.push(new Ball(new vector(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 100),i));
+                gl.compileShader(fragmentShader);
+                if(!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)){
+                   console.error('error',gl.getShaderInfoLog(fragmentShader));
+                    return;
                 }
-                setInterval(function(){draw()},5);
-            }
-            
-            function resizeCanvas() {
-                var canvas = document.getElementById("canvas");
-                var ctx = canvas.getContext("2d");
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                draw();
-            }   
+                gl.compileShader(fragmentShader2);
+                if(!gl.getShaderParameter(fragmentShader2, gl.COMPILE_STATUS)){
+                   console.error('error',gl.getShaderInfoLog(fragmentShader2));
+                    return;
+                }
+                var program1 = gl.createProgram();
+                gl.attachShader(program1, vertexShader);
+                gl.attachShader(program1, fragmentShader);
+                gl.linkProgram(program1);
+                
+                
+                var program2 = gl.createProgram();
+                gl.attachShader(program2, vertexShader);
+                gl.attachShader(program2, fragmentShader2);
+                gl.linkProgram(program2);
+                
+                
+                //
+                // 버텍스 정보
+                //
+                
+                var verticies =
+                    [
+                        -1.0, -1.0,
+                        -1.0, 1.0,
+                        1.0, -1.0,
+                        1.0, 1.0,
+                    ];
+                
+                gl.useProgram(program1);
+                
+                var vertexBufferObject = gl.createBuffer();
+                gl.bindBuffer(gl.ARRAY_BUFFER, vertexBufferObject);
+                gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verticies), gl.STATIC_DRAW);
+                
+                var Loc_U_mousePos = gl.getUniformLocation(program1, "mousePos");
+                var Loc_U_time = gl.getUniformLocation(program1, "time");
+                var positionAttribLocation = gl.getAttribLocation(program1, 'vertPosition');
+                var textureUniformLocation = gl.getUniformLocation(program1, 'u_image');
+                var resolutionUniformLocation = gl.getUniformLocation(program1, 'u_resolution');
+
+                var textureUniformLocation2 = gl.getUniformLocation(program2, 'u_image');
+                var resolutionUniformLocation2 = gl.getUniformLocation(program2, 'u_resolution');
+                var Loc_U_time2 = gl.getUniformLocation(program2, 'time');
+
+                gl.vertexAttribPointer(
+                    positionAttribLocation, 
+                    2, 
+                    gl.FLOAT, 
+                    gl.FALSE,
+                    2 * Float32Array.BYTES_PER_ELEMENT,
+                    0
+                );
+                
+                gl.enableVertexAttribArray(positionAttribLocation);
+                
+                
+                //
+                var firstTex = gl.createTexture();
+                gl.bindTexture(gl.TEXTURE_2D, firstTex);
+                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, window.innerWidth, window.innerHeight, 0, gl.RGBA,gl.UNSIGNED_BYTE, null);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+                
+                var fbo1 = gl.createFramebuffer();
+                gl.bindFramebuffer(gl.FRAMEBUFFER, fbo1);
+                gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, firstTex, 0);
+                
+                
+                var secondTex = gl.createTexture();
+                gl.bindTexture(gl.TEXTURE_2D, secondTex);
+                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, window.innerWidth, window.innerHeight, 0, gl.RGBA,gl.UNSIGNED_BYTE, null);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+                
+                var fbo2 = gl.createFramebuffer();
+                gl.bindFramebuffer(gl.FRAMEBUFFER, fbo2);
+                gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, secondTex, 0);
+                //
+
+                
+                gl.bindBuffer(gl.ARRAY_BUFFER, vertexBufferObject);
+                //renderLoop
+                var first = true;
+                
+                var loop = function(){
+                    var canvas = document.getElementById('canv');
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                    gl.viewport(0, 0, canvas.width,canvas.height);
+                    time ++;
+                    console.log(canvas.width);
+                    gl.useProgram(program1);
+                    gl.uniform2fv(Loc_U_mousePos, [mouseX/gl.canvas.width, 1.0-mouseY/gl.canvas.height]);
+                    gl.uniform2fv(resolutionUniformLocation, [gl.canvas.width, gl.canvas.height]);
+                    gl.uniform1f(Loc_U_time, [time]);
+                    gl.uniform1i(textureUniformLocation, 0);
+                        
+                    if (first)
+                    {    
+                        gl.bindFramebuffer(gl.FRAMEBUFFER, fbo1);
+                     
+                        gl.bindTexture(gl.TEXTURE_2D, secondTex);
+                        
+                        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                    }
+                    else
+                    {
+                        gl.bindFramebuffer(gl.FRAMEBUFFER, fbo2);
+                        
+                        
+                        gl.bindTexture(gl.TEXTURE_2D, firstTex);
+
+                        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                    }
+                            
+                    gl.useProgram(program2);
+                    console.log(window.innerWidth);
+                    gl.uniform2fv(resolutionUniformLocation2, [gl.canvas.width, gl.canvas.height]);
+                    gl.uniform1f(Loc_U_time2, [time]);
+                    //프레임 버퍼 제거
+                    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+                    
+                    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+                    if(first)
+                    {
+                        gl.bindTexture(gl.TEXTURE_2D, firstTex);    
+                    }
+                    else
+                    {
+                        gl.bindTexture(gl.TEXTURE_2D, secondTex);        
+                    }
+                    first = !first;
+                    requestAnimationFrame(loop);
+                    
+                }
+                
+                requestAnimationFrame(loop);
+            }            
         </script>
     </head>
-    <body onload="setup()">
-        <canvas id = "canvas"></canvas>
+    <body onload="setup()" onmousemove="get_position_of_mousePointer(event)">
+        <canvas id="canv">
+            크롬을 사용하세요 크롬
+        </canvas>
         <nav class = "navigation noBorder">
             <div class="navLeft">
                 초코딩
             </div>
             <div class = "navRight">
-                <a class="signIn" href="http://www.naver.com">
+                <a class="signIn" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">
                     가입신청 링크
                 </a>
             </div>
@@ -743,7 +912,7 @@
                     </p>
                 </div>
             </div>
-<div class = "heading">
+            <div class = "heading">
                 <svg class = "rotateReset" width="25px" height="25px" viewBox="0 0 100 100">
                       <path d="M48 0 V 95 L 4 50 H 0 L 50 100 L 100 50 H 96 L 52 95 V 0 Z" stroke="white" fill="white" />
                 </svg>
@@ -761,11 +930,75 @@
                             </figcaption>
                     </figure>
                 </div>
-                <div class = "contentLeft">
+                <div class = "contentRight">
                     <p>
                         처음 코딩을 배우는 사람들이 주로 접하는 파이썬은 물론 아주아주 좋은 도구이지만, 시각적인 피드백을 얼마나 쉽게 받을 수 있는가 하는 측면에서 본다면 프로세싱이 더 우위에 있다고 생각합니다. 그렇다고 스크래치를 하기엔 이건 요새 초등학생도 한다는데 대학생이나 돼서 뭔가 자존심 상하는 느낌을 받는 것 같구요. 그래서 우리는 프로세싱과 유니티를 이용합니다!
                     </p>
                 </div>
+            </div>
+            
+            <div class = "heading">
+                <svg class = "rotateReset" width="25px" height="25px" viewBox="0 0 100 100">
+                      <path d="M48 0 V 95 L 4 50 H 0 L 50 100 L 100 50 H 96 L 52 95 V 0 Z" stroke="white" fill="white" />
+                </svg>
+                <h1>자주 묻는 질문</h1>
+            </div>
+            <div class = "content">
+                <p class="question">
+                    <span>Q. 처음 참여하는데 따로 준비해야 할 것이 있나요??</span>
+                </p>
+                <p class="question">
+                    A. 노트북을 지참해주시고 <a href="https://processing.org/">processing</a>이나 <a href="https://unity3d.com/kr">unity</a>를 설치해주세요. 참석 전에 <a href="https://paper.dropbox.com/doc/processing-JwGtPYTPWN5JuN60qrMID?_tk=share_copylink">초코딩 프로세싱 튜토리얼</a>을 살펴보고 오시면 더더 좋습니다. 참고로 이거 직접 작성했습니다. 네.
+                </p>
+                <br>
+                <p class="question">
+                    <span>Q. 다른 학교/학과/학번 학생인데 참여해도 괜찮을까요?</span>
+                </p>
+                <p class="question">
+                    A. 상관없습니다.
+                </p>
+                <br>
+                <p class="question">
+                    <span>Q. 이미 진도 나간 것 아닌가요? 중간에 참여해도 되나요?</span>
+                </p>
+                <p class="question">
+                    A. 괜찮습니다. 다들 복습을 잘 안 해서 까먹고 다시 공부하고 다시 까먹고 이런 상태를 반복하고 있거든요.
+                </p>
+                <br>
+                <p class="question">
+                    <span>Q. 저는 코딩에 대해 진짜 아무것도 모르는데 참여해도 괜찮을까요?</span>
+                </p>
+                <p class="question">
+                    A. 물론입니다. 동아리 이름부터 초보자 코딩모임입니다.
+                </p>
+                <br>
+                <p class="question">
+                    <span>Q. 그렇지만 다른 사람들에게 민폐가 되진 않을까요?</span>
+                </p>
+                <p class="question">
+                    A. 아닙니다. 저희 다 초보입니다. 오히려 좀 못하는 분이 오셨으면 좋겠습니다. 너무 잘 하면 제가 잘난척을 할 수 없어서 자존심 상하거든요.
+                </p>
+                <br>
+                <p class="question">
+                    <span>Q. 그렇지만 저는 컴퓨터 켤 줄만 아는 컴맹이고 수포자인데요?</span>
+                </p>
+                <p class="question">
+                    A. 우리 모두가 마찬가지입니다. 일단 저는 더하기 빼기는 할 줄 압니다. 구구단은 가끔 헷갈리고요.
+                </p>
+                <br>
+                <p class="question">
+                    <span>Q. 아무래도 안되겠어요. 저는 개인적으로 공부를 해서 준비가 되면 참석할래요.</span>
+                </p>
+                <p class="question">
+                    A. 본인 자유입니다만 이 분야에선 아는 사람에게 배우면 5분만에 끝날 것을 하루종일 구글링을 하며 고생하게 되는 경우가 많습니다. 그것도 나름대로 공부의 방법이겠지만요.
+                </p>
+                <br>
+                <p class="question">
+                    <span>Q. 그래도 안갈래요.</span>
+                </p>
+                <p class="question">
+                    A. 응원합니다...
+                </p>
             </div>
         </section>
     </body>
