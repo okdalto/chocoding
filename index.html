@@ -591,14 +591,17 @@
                 'precision mediump float;',
                 'uniform sampler2D u_image;',
                 'uniform vec2 u_resolution;',
+                'uniform vec2 mousePos;',
                 'uniform float time;',
 
                 'void main()',
                 '{',
                 '  vec2 uv = (gl_FragCoord.xy/u_resolution.xy);',
                 '  uv.x *= u_resolution.x*0.001; uv.y *= u_resolution.y*0.001;',
-                '  float col = fract((distance(vec2(1.0,1.0),uv*10.0)+time*0.01)*3.0);',
-                '  gl_FragColor = vec4(uv.y * vec3(col), 1.0);',
+                '  float col1 = fract((distance(mousePos,vec2(uv.x+sin(uv.y*30.0)*0.01+0.01,uv.y))+time*0.01)*10.0);',
+                '  float col2 = fract((distance(mousePos,vec2(uv.x+sin(uv.y*30.0)*0.01+0.00,uv.y))+time*0.01)*10.0);',
+                '  float col3 = fract((distance(mousePos,vec2(uv.x+sin(uv.y*30.0)*0.01-0.01,uv.y))+time*0.01)*10.0);',
+                '  gl_FragColor = vec4(uv.y * vec3(col1,col2,col3), 1.0);',
                 '}'
             ].join('\n');
             
@@ -673,7 +676,8 @@
                 var positionAttribLocation = gl.getAttribLocation(program1, 'vertPosition');
                 var textureUniformLocation = gl.getUniformLocation(program1, 'u_image');
                 var resolutionUniformLocation = gl.getUniformLocation(program1, 'u_resolution');
-
+                
+                var Loc_U_mousePos2 = gl.getUniformLocation(program2, "mousePos");
                 var textureUniformLocation2 = gl.getUniformLocation(program2, 'u_image');
                 var resolutionUniformLocation2 = gl.getUniformLocation(program2, 'u_resolution');
                 var Loc_U_time2 = gl.getUniformLocation(program2, 'time');
@@ -754,7 +758,7 @@
                     }
                             
                     gl.useProgram(program2);
-                    console.log(window.innerWidth);
+                    gl.uniform2fv(Loc_U_mousePos2, [mouseX/gl.canvas.width, 1.0-mouseY/gl.canvas.height]);
                     gl.uniform2fv(resolutionUniformLocation2, [gl.canvas.width, gl.canvas.height]);
                     gl.uniform1f(Loc_U_time2, [time]);
                     //프레임 버퍼 제거
