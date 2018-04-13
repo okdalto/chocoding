@@ -619,7 +619,7 @@
                 '  colR = ceil(colR);',
                 '  colG = ceil(colG);',
                 '  colB = ceil(colB);',
-                '  gl_FragColor = vec4(vec3((uv.y * colR)+randR*uv.y, (uv.y * colG)+randG*uv.y, (uv.y * colB)+randB*uv.y), 1.0);',
+                '  gl_FragColor = vec4(vec3((uv.y * colR), (uv.y * colG), (uv.y * colB)), 1.0);',
                 '}'
             ].join('\n');
             
