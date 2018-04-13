@@ -64,24 +64,34 @@
                     height: 60px;
                     z-index: 1;
                     font-weight: 800;
-                }                
-                .navigation>.navLeft{
+                    overflow: hidden;
+                } 
+                .navigation ul{
+                    list-style: none;
+                }
+                .navigation ul{
+                    list-style: none;
+                    overflow: hidden;
+                    padding: 0 6% 0 6%;
+                }
+                .navigation ul .navLeft{
                     float: left;
-                    width: 44%;
-                    margin: 0;
+                    padding-left: none;
+                    vertical-align: middle; 
+                    display: inline-block;
                     color: white;
-                    font-size: xx-large;
-                    font-weight: 800;
-                    padding: 12px 0 0 6%;
+                    font-size: 32px;
+                    line-height: 35px;
                 }
-                .navigation>.navRight{
-                    float: left;
-                    width: 44%;
+                .navigation ul .navRight{
+                    float: right;
                     text-align: right;
-                    margin: 0;
-                    padding: 25px 6% 0 0;
-                    font-size: 18px;
-                }
+                    vertical-align: middle; 
+                    display: inline-block;
+                    color: white;
+                    font-size: 16px;
+                    line-height: 35px;
+                }                
                 header{
                     margin: 0px 0px 0px 0px;
                     padding: 0px;
@@ -142,11 +152,6 @@
                 }
                 p>span{
                     font-weight: 800;
-                }
-                ul{
-                    padding: 0;
-                    margin: 0px calc(50% - 140px) 0px calc(50% - 140px);
-                    width: 320px;
                 }
                 .youtubeWrapper{
                     height: 200px;
@@ -233,23 +238,32 @@
                     z-index: 1;
                     font-weight: 800;
                 }                
-                .navigation>.navLeft{
+                .navigation ul{
+                    list-style: none;
+                }
+                .navigation ul{
+                    list-style: none;
+                    overflow: hidden;
+                    padding: 0 6% 0 6%;
+                }
+                .navigation ul .navLeft{
                     float: left;
-                    width: 44%;
-                    margin: 0;
+                    padding-left: none;
+                    vertical-align: middle; 
+                    display: inline-block;
                     color: white;
-                    font-size: xx-large;
-                    font-weight: 800;
-                    padding: 12px 0 0 6%;
+                    font-size: 32px;
+                    line-height: 35px;
                 }
-                .navigation>.navRight{
-                    float: left;
-                    width: 44%;
+                .navigation ul .navRight{
+                    float: right;
                     text-align: right;
-                    margin: 0;
-                    padding: 25px 6% 0 0;
-                    font-size: 18px;
-                }
+                    vertical-align: middle; 
+                    display: inline-block;
+                    color: white;
+                    font-size: 16px;
+                    line-height: 35px;
+                }                
                 .signIn{
                     color: white;
                 }
@@ -409,23 +423,29 @@
                     z-index: 1;
                     font-weight: 800;
                 }                
-                .navigation>.navLeft{
+                .navigation ul{
+                    list-style: none;
+                    overflow: hidden;
+                    padding: 0 6% 0 6%;
+                }
+                .navigation ul .navLeft{
                     float: left;
-                    width: 44%;
-                    margin: 0;
+                    padding-left: none;
+                    vertical-align: middle; 
+                    display: inline-block;
                     color: white;
-                    font-size: xx-large;
-                    font-weight: 800;
-                    padding: 12px 0 0 6%;
+                    font-size: 32px;
+                    line-height: 35px;
                 }
-                .navigation>.navRight{
-                    float: left;
-                    width: 44%;
+                .navigation ul .navRight{
+                    float: right;
                     text-align: right;
-                    margin: 0;
-                    padding: 25px 6% 0 0;
-                    font-size: 18px;
-                }
+                    vertical-align: middle; 
+                    display: inline-block;
+                    color: white;
+                    font-size: 16px;
+                    line-height: 35px;
+                }                
                 .signIn{
                     color: white;
                 }
@@ -484,11 +504,6 @@
                 }
                 p>span{
                     font-weight: 800;
-                }
-                ul{
-                    padding: 0;
-                    margin: 0px calc(50% - 140px) 0px calc(50% - 140px);
-                    width: 320px;
                 }
                 .youtubeWrapper{
                     width: 450px;
@@ -787,14 +802,25 @@
             크롬을 사용하세요 크롬
         </canvas>
         <nav class = "navigation noBorder">
+<!--
             <div class="navLeft">
                 초코딩
             </div>
             <div class = "navRight">
-                <a class="signIn" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">
                     가입신청 링크
                 </a>
             </div>
+-->
+            <ul>
+                <li class="navLeft">
+                    초코딩
+                </li>
+                <li class = "navRight">
+                    <a class="signIn" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">
+                    가입신청 링크
+                    </a>
+                </li>
+            </ul>
         </nav>
         <header>
             <img class="chocoPicture" src="img/CHOCO.png" alt="이미지를 표현할 수 없습니다.">
