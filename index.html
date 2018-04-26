@@ -747,7 +747,6 @@
                     canvas.height = window.innerHeight;
                     gl.viewport(0, 0, canvas.width,canvas.height);
                     time ++;
-                    console.log(canvas.width);
                     gl.useProgram(program1);
                     gl.uniform2fv(Loc_U_mousePos, [mouseX/gl.canvas.width, 1.0-mouseY/gl.canvas.height]);
                     gl.uniform2fv(resolutionUniformLocation, [gl.canvas.width, gl.canvas.height]);
