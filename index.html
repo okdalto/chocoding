@@ -627,6 +627,9 @@
             var get_position_of_mousePointer = function( event ) { 
                 mouseX = event.clientX;
                 mouseY = event.clientY;
+                console.log(mouseX, mouseY);
+                var canvas = document.getElementById('canv');
+                console.log(canvas.width, canvas.height);
             }
             var setup = function(){
                 var canvas = document.getElementById('canv');
@@ -815,8 +818,8 @@
                     초코딩
                 </li>
                 <li class = "navRight">
-                    <a class="signIn" href="https://goo.gl/forms/f3hrJGFdMMqr3jYm2">
-                    가입신청 링크
+                    <a class="signIn" href="https://open.kakao.com/o/grLYYBS">
+                        채팅방 링크
                     </a>
                 </li>
             </ul>
