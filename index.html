@@ -594,10 +594,55 @@
             var fragmentShaderText = 
             [
                 'precision mediump float;',
- 
+                'uniform sampler2D u_image;',
+                'uniform vec2 u_resolution;',
+                'uniform float time;',
+                'uniform vec2 mousePos;',
+                
+                '#define TIMESTEP 1.0',
+
+                '#define F 0.055',
+                '#define K 0.060',
+                '#define Da 1.0',
+                '#define Db 0.35',
+
                 'void main()',
                 '{',
-                '  gl_FragColor = vec4(vec3(1.0),1.0);',
+                '  vec2 uv = (gl_FragCoord.xy/u_resolution.xy);',
+                '  vec2 hori = vec2(1.0, 0.0);',
+                '  vec2 vert = vec2(0.0, 1.0);',
+                '  vec2 val = texture2D(u_image, uv).xy;',
+                '  vec2 lap = texture2D(u_image, uv + hori/u_resolution.xy).xy * 0.2;',
+                '  lap += texture2D(u_image, uv + -hori/u_resolution.xy).xy * 0.2;',
+                '  lap += texture2D(u_image, uv + vert/u_resolution.xy).xy * 0.2;',
+                '  lap += texture2D(u_image, uv + -vert/u_resolution.xy).xy * 0.2;',
+                '  lap += texture2D(u_image, uv + (hori+vert)/u_resolution.xy).xy * 0.05;',
+                '  lap += texture2D(u_image, uv + (hori-vert)/u_resolution.xy).xy * 0.05;',
+                '  lap += texture2D(u_image, uv + (-hori+vert)/u_resolution.xy).xy * 0.05;',
+                '  lap += texture2D(u_image, uv + (-hori-vert)/u_resolution.xy).xy * 0.05;',
+
+                '  lap += val * -1.0;',
+                '  vec3 colour = vec3(0.0);',
+
+                '  if (time < 3.0) {',
+                '      if (uv.x > 0.45 && uv.x < 0.55 && uv.y > 0.45 && uv.y < 0.65) {',
+                '          colour = vec3(1.0);',
+                '      }',
+                '  } else {',
+                '    float f = 0.045;',
+                '    float k = 0.060;',
+
+                '     vec2 delta;',
+                '      delta.x = val.x + Da * lap.x - val.x * val.y * val.y + f * (1.0 - val.x);',
+                '      delta.y = val.y + Db * lap.y + val.x * val.y * val.y - (k + f) * val.y;',
+
+                '      colour = vec3(delta,0.0);',
+                '  }',
+                '  if (distance(uv,mousePos) < 0.1) {',
+                '      colour = vec3(0.0,1.0,0.0);',
+                '  }',
+
+                '  gl_FragColor = vec4(colour, uv.y);',
                 '}'
             ].join('\n');
             
@@ -612,10 +657,12 @@
                 'void main()',
                 '{',
                 '  vec2 uv = (gl_FragCoord.xy/u_resolution.xy);',
+                '  vec3 finalCol = texture2D(u_image, uv).xyz;',
                 '  float col1 = fract((distance(mousePos,vec2(uv.x+sin(uv.y*30.0)*0.01+0.01,uv.y))+time*0.001)*10.0);',
                 '  float col2 = fract((distance(mousePos,vec2(uv.x+sin(uv.y*30.0)*0.01+0.00,uv.y))+time*0.001)*10.0);',
                 '  float col3 = fract((distance(mousePos,vec2(uv.x+sin(uv.y*30.0)*0.01-0.01,uv.y))+time*0.001)*10.0);',
-                '  gl_FragColor = vec4(uv.y * vec3(col1,col2,col3), 1.0);',
+                '  //gl_FragColor = vec4(uv.y * vec3(col1,col2,col3), 1.0);',
+                '  gl_FragColor = vec4(finalCol - (1.0 - uv.y), 0.0);',
                 '}'
             ].join('\n');
             
@@ -626,9 +673,9 @@
             var get_position_of_mousePointer = function( event ) { 
                 mouseX = event.clientX;
                 mouseY = event.clientY;
-                console.log(mouseX, mouseY);
+//                console.log(mouseX, mouseY);
                 var canvas = document.getElementById('canv');
-                console.log(canvas.width, canvas.height);
+//                console.log(canvas.width, canvas.height);
             }
             var setup = function(){
                 var canvas = document.getElementById('canv');
@@ -750,11 +797,12 @@
                     gl.viewport(0, 0, canvas.width,canvas.height);
                     time ++;
                     gl.useProgram(program1);
-                    gl.uniform2fv(Loc_U_mousePos, [mouseX/canvas.width, 1.0-mouseY/canvas.height]);
+                    gl.uniform2fv(Loc_U_mousePos, [mouseX/canvas.width, 1.0-(mouseY + window.scrollY)/canvas.height]);
+                    console.log(canvas.width);
                     gl.uniform2fv(resolutionUniformLocation, [canvas.width, canvas.height]);
                     gl.uniform1f(Loc_U_time, [time]);
                     gl.uniform1i(textureUniformLocation, 0);
-                        
+                    
                     if (first)
                     {    
                         gl.bindFramebuffer(gl.FRAMEBUFFER, fbo1);
@@ -774,7 +822,7 @@
                     }
                             
                     gl.useProgram(program2);
-                    gl.uniform2fv(Loc_U_mousePos2, [mouseX/canvas.width, 1.0-mouseY/canvas.height]);
+                    gl.uniform2fv(Loc_U_mousePos2, [mouseX/canvas.width, 1.0-(mouseY + window.scrollY)/canvas.height]);
                     gl.uniform2fv(resolutionUniformLocation2, [canvas.width, canvas.height]);
                     gl.uniform1f(Loc_U_time2, [time]);
                     //프레임 버퍼 제거
@@ -783,7 +831,7 @@
                     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
                     if(first)
                     {
-                        gl.bindTexture(gl.TEXTURE_2D, firstTex);    
+                        gl.bindTexture(gl.TEXTURE_2D, secondTex);    
                     }
                     else
                     {
@@ -950,7 +998,7 @@
                     <span>Q. 처음 참여하는데 따로 준비해야 할 것이 있나요??</span>
                 </p>
                 <p class="question">
-                    A. 노트북을 지참해주시고 <a href="https://processing.org/">processing</a>이나 <a href="https://unity3d.com/kr">unity</a>를 설치해주세요. 참석 전에 <a href="https://paper.dropbox.com/doc/processing-JwGtPYTPWN5JuN60qrMID?_tk=share_copylink">초코딩 프로세싱 튜토리얼</a>을 살펴보고 오시면 더더 좋습니다. 참고로 이거 직접 작성했습니다. 네.
+                    A. 노트북을 지참해주시고 <a href="https://processing.org/">processing</a>이나 <a href="https://unity3d.com/kr">unity</a>를 설치해주세요. 참석 전에 <a href="https://paper.dropbox.com/doc/processing-JwGtPYTPWN5JuN60qrMID?_tk=share_copylink">초코딩 프로세싱 튜토리얼</a>을 살펴보고 오시면 더더 좋습니다. 참고로 이거 직접 작성했습니다. 네.
                 </p>
                 <br>
                 <p class="question">
