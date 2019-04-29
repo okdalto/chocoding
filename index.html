@@ -22,7 +22,7 @@
                     margin: 0; padding: 0;
                 }
                 img{
-                    margin: 0 calc(50% - 140px) 0 calc(50% - 140px);
+                    margin: 0 calc(50% - 143px) 0 calc(50% - 143px);
                     width: 280px;
                 }
                 figure{
@@ -30,7 +30,7 @@
                     font-weight: 800;
                 }
                 figcaption{
-                    margin: 0 calc(50% - 140px) 34px calc(50% - 140px);
+                    margin: 0 calc(50% - 143px) 34px calc(50% - 143px);
                     padding: 0;
                     width: 280px;
                     font-size: 12px;
@@ -687,6 +687,13 @@
             function mouseUp(){
                 mouseZ = 0.0;
             }
+            
+            function touchDown(event){
+                mouseX = event.touches[0].clientX;
+                mouseY = event.touches[0].clientY;
+                mouseZ = 1.0;
+            }
+
 
             
             var setup = function(){
@@ -694,7 +701,7 @@
                 document.body.onmousedown = function(){mouseDown()};
                 document.body.onmouseout = function(){mouseUp()};
                 document.body.onmouseup = function(){mouseUp()};
-                document.body.ontouchstart = function(){mouseDown()};
+                document.body.ontouchmove = function(event){touchDown(event)};
                 document.body.ontouchend = function(){mouseUp()};
                 console.log("working");
                 var gl = canvas.getContext('webgl');
