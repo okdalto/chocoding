@@ -694,6 +694,8 @@
                 document.body.onmousedown = function(){mouseDown()};
                 document.body.onmouseout = function(){mouseUp()};
                 document.body.onmouseup = function(){mouseUp()};
+                document.body.ontouchstart = function(){mouseDown()};
+                document.body.ontouchend = function(){mouseUp()};
                 console.log("working");
                 var gl = canvas.getContext('webgl');
 
