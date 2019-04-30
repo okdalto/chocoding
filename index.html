@@ -711,6 +711,47 @@
             var mouseZ = 0;
             var time = 0;
             var width = 0;
+            var keys = [32,33,34,35,36,37,38,39,40];
+
+            function preventDefault(e) {
+              e = e || window.event;
+              if (e.preventDefault)
+                  e.preventDefault();
+              e.returnValue = false;  
+            }
+
+            function keydown(e) {
+                for (var i = keys.length; i--;) {
+                    if (e.keyCode === keys[i]) {
+                        preventDefault(e);
+                        return;
+                    }
+                }
+            }
+
+            function wheel(e) {
+              preventDefault(e);
+            }
+
+            function disable_scroll() {
+              preventDefault();
+              document.onkeydown = keydown;
+              disable_scroll_mobile();
+            }
+
+            function enable_scroll() {
+                enable_scroll_mobile();
+            }
+
+            // My improvement
+
+            // MOBILE
+            function disable_scroll_mobile(){
+              document.addEventListener('touchmove',preventDefault, false);
+            }
+            function enable_scroll_mobile(){
+              document.removeEventListener('touchmove',preventDefault, false);
+            }
             
             var get_position_of_mousePointer = function( event ) { 
                 mouseX = event.clientX;
@@ -721,15 +762,17 @@
             }
             
             function mouseDown(){
-                console.log("edas");
+                disable_scroll();
                 mouseZ = 1.0;
             }
             
             function mouseUp(){
+                enable_scroll();
                 mouseZ = 0.0;
             }
             
             function touchDown(event){
+                disable_scroll();
                 mouseX = event.touches[0].clientX;
                 mouseY = event.touches[0].clientY;
                 mouseZ = 1.0;
@@ -745,11 +788,6 @@
                 width = window.innerWidth;
                 time = 0;
                 var canvas = document.getElementById('canv');
-                document.body.onmousedown = function(){mouseDown()};
-                document.body.onmouseout = function(){mouseUp()};
-                document.body.onmouseup = function(){mouseUp()};
-                document.body.ontouchmove = function(event){touchDown(event)};
-                document.body.ontouchend = function(){mouseUp()};
                 console.log("working");
                 var gl = canvas.getContext('webgl');
 
@@ -907,9 +945,10 @@
         </script>
     </head>
     <body onload="setup()" onmousemove="get_position_of_mousePointer(event)" onresize="resize()">
-        <canvas id="canv"">
+        <canvas id="canv" onmousedown = "mouseDown()" onmouseout = "mouseUp()" onmouseup = "mouseUp()" ontouchmove = "touchDown(event)" ontouchend = "mouseUp()">
             크롬을 사용하세요 크롬
         </canvas>
+                          
         <nav class = "navigation noBorder">
 <!--
             <div class="navLeft">
