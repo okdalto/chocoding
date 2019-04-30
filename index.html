@@ -22,7 +22,7 @@
                     margin: 0; padding: 0;
                 }
                 img{
-                    margin: 0 calc(50% - 143px) 0 calc(50% - 143px);
+                    margin: 0 calc(50% - 140px) 0 calc(50% - 140px);
                     width: 280px;
                 }
                 figure{
@@ -30,7 +30,7 @@
                     font-weight: 800;
                 }
                 figcaption{
-                    margin: 0 calc(50% - 143px) 34px calc(50% - 143px);
+                    margin: 0 calc(50% - 140px) 34px calc(50% - 140px);
                     padding: 0;
                     width: 280px;
                     font-size: 12px;
@@ -593,12 +593,13 @@
             
             var fragmentShaderText = 
             [
+                
                 'precision mediump float;',
                 'uniform sampler2D u_image;',
                 'uniform vec2 u_resolution;',
                 'uniform float time;',
                 'uniform vec3 mousePos;',
-                
+
                 '#define TIMESTEP 1.0',
 
                 '#define F 0.055',
@@ -621,7 +622,6 @@
                 '  lap += texture2D(u_image, uv + (hori-vert)/u_resolution.xy).xy * 0.05;',
                 '  lap += texture2D(u_image, uv + (-hori+vert)/u_resolution.xy).xy * 0.05;',
                 '  lap += texture2D(u_image, uv + (-hori-vert)/u_resolution.xy).xy * 0.05;',
-
                 '  lap += val * -1.0;',
 
                 '  if (time < 3.0) {',
@@ -638,12 +638,14 @@
 
                 '      colour = vec3(delta,0.0);',
                 '  }',
+                
                 '  if(mousePos.z > 0.5){',
                 '      if (distance(uv,mousePos.xy) < 0.1) {',
                 '          colour = vec3(0.0,1.0,0.0);',
                 '      }',
                 '  }',
-                '  gl_FragColor = vec4(colour, uv.y);',
+
+                '  gl_FragColor = vec4(colour, 1.0);',
                 '}'
             ].join('\n');
             
@@ -652,18 +654,17 @@
                 'precision mediump float;',
                 'uniform sampler2D u_image;',
                 'uniform vec2 u_resolution;',
-                'uniform vec3 mousePos;',
+                'uniform vec2 mousePos;',
                 'uniform float time;',
 
                 'void main()',
                 '{',
                 '  vec2 uv = (gl_FragCoord.xy/u_resolution.xy);',
-                '  vec3 finalCol = texture2D(u_image, uv).xyz;',
-                '  float col1 = fract((distance(mousePos.xy,vec2(uv.x+sin(uv.y*30.0)*0.01+0.01,uv.y))+time*0.001)*10.0);',
-                '  float col2 = fract((distance(mousePos.xy,vec2(uv.x+sin(uv.y*30.0)*0.01+0.00,uv.y))+time*0.001)*10.0);',
-                '  float col3 = fract((distance(mousePos.xy,vec2(uv.x+sin(uv.y*30.0)*0.01-0.01,uv.y))+time*0.001)*10.0);',
-                '  //gl_FragColor = vec4(uv.y * vec3(col1,col2,col3), 1.0);',
-                '  gl_FragColor = vec4(finalCol - (1.0 - uv.y), 0.0);',
+                '  float col1 = fract((distance(mousePos,vec2(uv.x+sin(uv.y*30.0)*0.01+0.01,uv.y))+time*0.001)*10.0);',
+                '  float col2 = fract((distance(mousePos,vec2(uv.x+sin(uv.y*30.0)*0.01+0.00,uv.y))+time*0.001)*10.0);',
+                '  float col3 = fract((distance(mousePos,vec2(uv.x+sin(uv.y*30.0)*0.01-0.01,uv.y))+time*0.001)*10.0);',
+                '  vec3 col = texture2D(u_image, uv).xyz;',
+                '  gl_FragColor = vec4(col * uv.y, 1.0);',
                 '}'
             ].join('\n');
             
@@ -681,6 +682,7 @@
             }
             
             function mouseDown(){
+                console.log("edas");
                 mouseZ = 1.0;
             }
             
@@ -694,8 +696,6 @@
                 mouseZ = 1.0;
             }
 
-
-            
             var setup = function(){
                 var canvas = document.getElementById('canv');
                 document.body.onmousedown = function(){mouseDown()};
@@ -822,11 +822,10 @@
                     time ++;
                     gl.useProgram(program1);
                     gl.uniform3fv(Loc_U_mousePos, [mouseX/canvas.width, 1.0-(mouseY + window.scrollY)/canvas.height, mouseZ]);
-                    console.log(canvas.width);
                     gl.uniform2fv(resolutionUniformLocation, [canvas.width, canvas.height]);
                     gl.uniform1f(Loc_U_time, [time]);
                     gl.uniform1i(textureUniformLocation, 0);
-                    
+                        
                     if (first)
                     {    
                         gl.bindFramebuffer(gl.FRAMEBUFFER, fbo1);
@@ -846,7 +845,7 @@
                     }
                             
                     gl.useProgram(program2);
-                    gl.uniform3fv(Loc_U_mousePos2, [mouseX/canvas.width, 1.0-(mouseY + window.scrollY)/canvas.height, mouseZ]);
+                    gl.uniform3fv(Loc_U_mousePos, [mouseX/canvas.width, 1.0-(mouseY + window.scrollY)/canvas.height, mouseZ]);
                     gl.uniform2fv(resolutionUniformLocation2, [canvas.width, canvas.height]);
                     gl.uniform1f(Loc_U_time2, [time]);
                     //프레임 버퍼 제거
@@ -855,7 +854,7 @@
                     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
                     if(first)
                     {
-                        gl.bindTexture(gl.TEXTURE_2D, secondTex);    
+                        gl.bindTexture(gl.TEXTURE_2D, firstTex);    
                     }
                     else
                     {
