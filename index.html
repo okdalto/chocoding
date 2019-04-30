@@ -858,17 +858,18 @@
 
                 
                 gl.bindBuffer(gl.ARRAY_BUFFER, vertexBufferObject);
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
                 //renderLoop
                 var first = true;
                 
                 var loop = function(){
                     var canvas = document.getElementById('canv');
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
                     gl.viewport(0, 0, canvas.width,canvas.height);
                     time ++;
                     gl.useProgram(program1);
-                    gl.uniform3fv(Loc_U_mousePos, [mouseX/canvas.width, 1.0-(mouseY + window.scrollY)/canvas.height, mouseZ]);
+                    gl.uniform3fv(Loc_U_mousePos, [mouseX/canvas.width, 1.0-(mouseY + window.scrollY)/canvas.offsetHeight, mouseZ]);
+                    console.log(canvas.offsetHeight);
                     gl.uniform2fv(resolutionUniformLocation, [canvas.width, canvas.height]);
                     gl.uniform1f(Loc_U_time, [time]);
                     gl.uniform1i(textureUniformLocation, 0);
@@ -906,7 +907,7 @@
         </script>
     </head>
     <body onload="setup()" onmousemove="get_position_of_mousePointer(event)" onresize="resize()">
-        <canvas id="canv">
+        <canvas id="canv"">
             크롬을 사용하세요 크롬
         </canvas>
         <nav class = "navigation noBorder">
