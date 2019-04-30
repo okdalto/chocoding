@@ -710,6 +710,7 @@
             var mouseY = 0;
             var mouseZ = 0;
             var time = 0;
+            var width = 0;
             
             var get_position_of_mousePointer = function( event ) { 
                 mouseX = event.clientX;
@@ -734,8 +735,14 @@
                 mouseZ = 1.0;
             }
             
+            function resize(){
+                if(width != window.innerWidth){
+                    setup();
+                }
+            }
 
             var setup = function(){
+                width = window.innerWidth;
                 time = 0;
                 var canvas = document.getElementById('canv');
                 document.body.onmousedown = function(){mouseDown()};
@@ -890,18 +897,6 @@
                     //프레임 버퍼 제거
                     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
                     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-//                    if(first)
-//                    {
-//                        gl.bindFramebuffer(gl.FRAMEBUFFER, fbo1);
-//                        gl.bindTexture(gl.TEXTURE_2D, firstTex);    
-//                        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-//                    }
-//                    else
-//                    {
-//                        gl.bindFramebuffer(gl.FRAMEBUFFER, fbo2);
-//                        gl.bindTexture(gl.TEXTURE_2D, secondTex);        
-//                        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-//                    }
                     requestAnimationFrame(loop);
                     
                 }
@@ -910,7 +905,7 @@
             }          
         </script>
     </head>
-    <body onload="setup()" onmousemove="get_position_of_mousePointer(event)" onresize="setup()">
+    <body onload="setup()" onmousemove="get_position_of_mousePointer(event)" onresize="resize()">
         <canvas id="canv">
             크롬을 사용하세요 크롬
         </canvas>
