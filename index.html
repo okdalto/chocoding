@@ -5,6 +5,13 @@
         <title>이 페이지는 크롬에 최적화되어 있습니다.</title>
         <style>
             @import url('https://fonts.googleapis.com/css?family=Gothic+A1:400,800');
+            .chocoPicture{
+                -ms-user-select: none; 
+                -moz-user-select: -moz-none;
+                -khtml-user-select: none;
+                -webkit-user-select: none;
+                user-select: none;
+            }
             @media screen and (max-width:799px){
                 .chocoPicture{
                     position:absolute;
@@ -695,6 +702,7 @@
                 mouseY = event.touches[0].clientY;
                 mouseZ = 1.0;
             }
+            
 
             var setup = function(){
                 var canvas = document.getElementById('canv');
@@ -866,10 +874,10 @@
                 }
                 
                 requestAnimationFrame(loop);
-            }            
+            }          
         </script>
     </head>
-    <body onload="setup()" onmousemove="get_position_of_mousePointer(event)">
+    <body onload="setup()" onmousemove="get_position_of_mousePointer(event)" onresize="setup()">
         <canvas id="canv">
             크롬을 사용하세요 크롬
         </canvas>
