@@ -671,10 +671,11 @@
                 
                 'void main()',
                 '{',
+
                 '  vec2 uv = (gl_FragCoord.xy/u_resolution.xy);',
                 '  vec3 colour = vec3(0.0);',
-                '  vec2 hori = vec2((noise(vec3(uv * u_resolution.x * 0.005, time * 0.3))) * 0.5 + 1.0, 0.0);',
-                '  vec2 vert = vec2(0.0, (noise(vec3(uv * u_resolution.y * 0.005, time * 0.3))) * 0.5 + 1.0);',
+                '  vec2 hori = vec2(abs(noise(vec3(uv * u_resolution.x * 0.1, time))) + 1.0, 0.0);',
+                '  vec2 vert = vec2(0.0, absz(noise(vec3(uv * u_resolution.y * 0.1, + time))) + 1.0);',
                 '  //vec2 hori = vec2(1.0, 0.0);',
                 '  //vec2 vert = vec2(0.0, 1.0);',
                 '  vec2 val = texture2D(u_image, uv).xy;',
@@ -693,7 +694,7 @@
                 '          colour = vec3(1.0);',
                 '      }',
                 '  } else {',
-                '    float f = 0.063 + noise(vec3(uv * 2.0, time * 0.01)) * 0.02;',
+                '    float f = 0.063 + noise(vec3(uv * 1.0, time * 0.1)) * 0.02;',
                 '    float k = 0.052 + noise(vec3(uv * 1.0, time * 0.02)) * 0.02;',
 
                 '     vec2 delta;',
@@ -702,6 +703,15 @@
 
                 '      colour = vec3(delta,0.0);',
                 '  }',
+                
+                '  if(mousePos.z > 0.5){',
+                '      if (distance(uv,mousePos.xy) < 0.1) {',
+                '          colour = vec3(0.0,1.0,0.0);',
+                '      }',
+                '  }',
+                '  gl_FragColor = vec4(colour, 1.0);',
+                '}'
+
                 
                 '  if(mousePos.z > 0.5){',
                 '      if (distance(uv,mousePos.xy) < 0.1) {',
