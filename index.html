@@ -620,8 +620,7 @@
             
             var vertexShaderText = 
             [
-                '#version 300 es',
-                'in vec2 vertPosition;',
+                'attribute vec2 vertPosition;',
                 'void main()',
                 '{',
                 'gl_Position = vec4(vertPosition, 0.0, 1.0);',
@@ -631,13 +630,11 @@
             var fragmentShaderText = 
             [
                 
-                '#version 300 es',
                 'precision mediump float;',
                 'uniform sampler2D u_image;',
                 'uniform vec2 u_resolution;',
                 'uniform float time;',
                 'uniform vec3 mousePos;',
-                'out vec4 finalCol;',
 
                 '#define TIMESTEP 1.0',
 
@@ -680,15 +677,15 @@
                 '  vec2 vert = vec2(0.0, (noise(vec3(uv * u_resolution.y * 0.005, time * 0.3))) * 0.5 + 1.0);',
                 '  //vec2 hori = vec2(1.0, 0.0);',
                 '  //vec2 vert = vec2(0.0, 1.0);',
-                '  vec2 val = texture(u_image, uv).xy;',
-                '  vec2 lap = texture(u_image, uv + hori/u_resolution.xy).xy * 0.2;',
-                '  lap += texture(u_image, uv + -hori/u_resolution.xy).xy * 0.2;',
-                '  lap += texture(u_image, uv + vert/u_resolution.xy).xy * 0.2;',
-                '  lap += texture(u_image, uv + -vert/u_resolution.xy).xy * 0.2;',
-                '  lap += texture(u_image, uv + (hori+vert)/u_resolution.xy).xy * 0.05;',
-                '  lap += texture(u_image, uv + (hori-vert)/u_resolution.xy).xy * 0.05;',
-                '  lap += texture(u_image, uv + (-hori+vert)/u_resolution.xy).xy * 0.05;',
-                '  lap += texture(u_image, uv + (-hori-vert)/u_resolution.xy).xy * 0.05;',
+                '  vec2 val = texture2D(u_image, uv).xy;',
+                '  vec2 lap = texture2D(u_image, uv + hori/u_resolution.xy).xy * 0.2;',
+                '  lap += texture2D(u_image, uv + -hori/u_resolution.xy).xy * 0.2;',
+                '  lap += texture2D(u_image, uv + vert/u_resolution.xy).xy * 0.2;',
+                '  lap += texture2D(u_image, uv + -vert/u_resolution.xy).xy * 0.2;',
+                '  lap += texture2D(u_image, uv + (hori+vert)/u_resolution.xy).xy * 0.05;',
+                '  lap += texture2D(u_image, uv + (hori-vert)/u_resolution.xy).xy * 0.05;',
+                '  lap += texture2D(u_image, uv + (-hori+vert)/u_resolution.xy).xy * 0.05;',
+                '  lap += texture2D(u_image, uv + (-hori-vert)/u_resolution.xy).xy * 0.05;',
                 '  lap += val * -1.0;',
 
                 '  if (time < 3.0) {',
@@ -711,24 +708,22 @@
                 '          colour = vec3(0.0,1.0,0.0);',
                 '      }',
                 '  }',
-                '  finalCol = vec4(colour, 1.0);',
+                '  gl_FragColor = vec4(colour, 1.0);',
                 '}'
             ].join('\n');
             
             
             var fragmentShaderText3 = 
             [
-                '#version 300 es',
                 'precision mediump float;',
                 'uniform sampler2D u_image;',
                 'uniform vec2 u_resolution;',
-                'out vec4 finalCol;',
                 
                 'void main()',
                 '{',
                 '  vec2 uv = (gl_FragCoord.xy/u_resolution.xy);',
-                '  vec4 col = texture(u_image, uv);',
-                '  finalCol = vec4(vec3(col.y * uv.y), 1.0);',
+                '  vec4 col = texture2D(u_image, uv);',
+                '  gl_FragColor  = vec4(vec3(col.y * uv.y), 1.0);',
                 '}'            ].join('\n');
             var mouseX = 0;
             var mouseY = 0;
@@ -807,13 +802,12 @@
                     setup();
                 }
             }
-            var gl;
             var setup = function(){
                 width = window.innerWidth;
                 time = 0;
                 var canvas = document.getElementById('canv');
                 console.log("working");
-                gl = canvas.getContext('webgl2');
+                var gl = canvas.getContext('webgl');
 
                 var vertexShader = gl.createShader(gl.VERTEX_SHADER);
                 var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
@@ -895,7 +889,7 @@
                 //texture number 1
                 var firstTex = gl.createTexture();
                 gl.bindTexture(gl.TEXTURE_2D, firstTex);
-                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RG8, window.innerWidth, window.innerHeight, 0, gl.RG, gl.UNSIGNED_BYTE, null);
+                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, window.innerWidth, window.innerHeight, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
                 gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
                 gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
                 gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
@@ -908,7 +902,7 @@
                 //texture number 2
                 var secondTex = gl.createTexture();
                 gl.bindTexture(gl.TEXTURE_2D, secondTex);
-                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RG8, window.innerWidth, window.innerHeight, 0, gl.RG, gl.UNSIGNED_BYTE, null);
+                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, window.innerWidth, window.innerHeight, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
                 gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
                 gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
                 gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
