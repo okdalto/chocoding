@@ -922,10 +922,10 @@
                 var loop = function(){
                     var canvas = document.getElementById('canv');
                     gl.viewport(0, 0, canvas.width,canvas.height);
-                    if(time < 100){
+                    if(time < 1024){
                         time ++;   
                     }else{
-                        time = 0;
+                        time = 5;
                     }
                     gl.useProgram(program1);
                     gl.uniform3fv(Loc_U_mousePos, [mouseX/canvas.width, 1.0-(mouseY + window.scrollY)/canvas.offsetHeight, mouseZ]);
