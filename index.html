@@ -978,7 +978,12 @@
                     gl.uniform1i(textureUniformLocation, 0);
                     
                     for(var i = 0; i < 10; i++){
-                        time ++;   
+                        if(time == Infinity){
+                            time = 0;
+                        }else{
+                            time ++;
+                        }
+                           
                         gl.uniform1f(Loc_U_time, [time]);
                         if (first)
                         {    
