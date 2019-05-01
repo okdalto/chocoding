@@ -693,8 +693,8 @@
                 '          colour = vec3(1.0);',
                 '      }',
                 '  } else {',
-                '    float f = 0.063 + noise(vec3(uv * 2.0, mod(time * 0.01, 1.0))) * 0.02;',
-                '    float k = 0.052 + noise(vec3(uv * 1.0, mod(time * 0.02, 1.0))) * 0.02;',
+                '    float f = 0.063 + noise(vec3(uv * 2.0, time * 0.01)) * 0.02;',
+                '    float k = 0.052 + noise(vec3(uv * 1.0, time * 0.02)) * 0.02;',
 
                 '     vec2 delta;',
                 '      delta.x = val.x + Da * lap.x - val.x * val.y * val.y + f * (1.0 - val.x);',
@@ -922,7 +922,11 @@
                 var loop = function(){
                     var canvas = document.getElementById('canv');
                     gl.viewport(0, 0, canvas.width,canvas.height);
-                    time ++;
+                    if(time < 100){
+                        time ++;   
+                    }else{
+                        time = 0;
+                    }
                     gl.useProgram(program1);
                     gl.uniform3fv(Loc_U_mousePos, [mouseX/canvas.width, 1.0-(mouseY + window.scrollY)/canvas.offsetHeight, mouseZ]);
                     gl.uniform2fv(resolutionUniformLocation, [canvas.width, canvas.height]);
