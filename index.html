@@ -632,6 +632,7 @@
                 
                 'precision highp float;',
                 'uniform sampler2D u_image;',
+                'uniform sampler2D u_noiseImage;',
                 'uniform vec2 u_resolution;',
                 'uniform float time;',
                 'uniform vec3 mousePos;',
@@ -721,9 +722,10 @@
                 'void main()',
                 '{',
                 '  vec2 uv = (gl_FragCoord.xy/u_resolution.xy);',
+                '  vec3 noise = texture2D(u_noiseImage, uv).xyz;',
                 '  vec3 colour = vec3(0.0);',
-                '  vec2 hori = vec2(abs(snoise(vec3(uv * u_resolution.x * 0.05, time * 0.02 + 15.0))) * 0.5 + 1.0, 0.0);',
-                '  vec2 vert = vec2(0.0, abs(snoise(vec3(uv * u_resolution.y * 0.05, time * 0.01))) * 0.5 + 1.0);',
+                '  vec2 hori = vec2(texture2D(u_noiseImage, uv * 0.5 + time * 0.001).x * 0.5 + 1.0, 0.0);',
+                '  vec2 vert = vec2(0.0, texture2D(u_noiseImage, uv * 0.05 + time * 0.001).x * 0.5 + 1.0);',
                 '  //vec2 hori = vec2(1.0, 0.0);',
                 '  //vec2 vert = vec2(0.0, 1.0);',
                 '  vec2 val = texture2D(u_image, uv).xy;',
@@ -742,8 +744,8 @@
                 '          colour = vec3(1.0);',
                 '      }',
                 '  } else {',
-                '    float f = 0.060 + snoise(vec3(uv, time * 0.002 + 15.0)) * 0.02;',
-                '    float k = 0.058 + snoise(vec3(uv, time * 0.001)) * 0.02;',
+                '    float f = 0.060 + (texture2D(u_noiseImage, hori+vert + time * 0.0001 + 15.0).x - 0.5) * 0.05;',
+                '    float k = 0.062 + (texture2D(u_noiseImage, hori+vert + time * 0.0001).x - 0.5) * 0.05;',
 
                 '     vec2 delta;',
                 '      delta.x = val.x + Da * lap.x - val.x * val.y * val.y + f * (1.0 - val.x);',
@@ -851,6 +853,62 @@
                     setup();
                 }
             }
+            
+            //loadTexture code LICENSE from https://github.com/mdn/webgl-examples/blob/gh-pages/LICENSE 
+            function loadTexture(gl, url) {
+                const texture = gl.createTexture();
+                gl.bindTexture(gl.TEXTURE_2D, texture);
+
+                // Because images have to be download over the internet
+                // they might take a moment until they are ready.
+                // Until then put a single pixel in the texture so we can
+                // use it immediately. When the image has finished downloading
+                // we'll update the texture with the contents of the image.
+                const level = 0;
+                const internalFormat = gl.RGBA;
+                const width = 1;
+                const height = 1;
+                const border = 0;
+                const srcFormat = gl.RGBA;
+                const srcType = gl.UNSIGNED_BYTE;
+                const pixel = new Uint8Array([0, 0, 255, 255]);  // opaque blue
+                gl.texImage2D(gl.TEXTURE_2D, level, internalFormat,
+                            width, height, border, srcFormat, srcType,
+                            pixel);
+
+                const image = new Image();
+                image.onload = function() {
+                    gl.bindTexture(gl.TEXTURE_2D, texture);
+                    gl.texImage2D(gl.TEXTURE_2D, level, internalFormat,
+                                  srcFormat, srcType, image);
+
+                    // WebGL1 has different requirements for power of 2 images
+                    // vs non power of 2 images so check if the image is a
+                    // power of 2 in both dimensions.
+                    if (isPowerOf2(image.width) && isPowerOf2(image.height)) {
+                       // Yes, it's a power of 2. Generate mips.
+                       gl.generateMipmap(gl.TEXTURE_2D);
+                    } else {
+                       // No, it's not a power of 2. Turn off mips and set
+                       // wrapping to clamp to edge
+                       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+                       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+                       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+                    }
+                };
+                image.crossOrigin = "";
+                image.src = url;
+
+                return texture;
+            }
+
+            function isPowerOf2(value) {
+                return (value & (value - 1)) == 0;
+            }
+            
+            
+
+
             var setup = function(){
                 width = window.innerWidth;
                 time = 0;
@@ -918,7 +976,8 @@
                 var positionAttribLocation = gl.getAttribLocation(program1, 'vertPosition');
                 var textureUniformLocation = gl.getUniformLocation(program1, 'u_image');
                 var resolutionUniformLocation = gl.getUniformLocation(program1, 'u_resolution');
-                                
+                var noiseTextureUniformLocation3 = gl.getUniformLocation(program1, 'u_noiseImage');
+                
                 var textureUniformLocation3 = gl.getUniformLocation(program3, 'u_image');
                 var resolutionUniformLocation3 = gl.getUniformLocation(program3, 'u_resolution');
 
@@ -960,7 +1019,9 @@
                 var fbo2 = gl.createFramebuffer();
                 gl.bindFramebuffer(gl.FRAMEBUFFER, fbo2);
                 gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, secondTex, 0);
-
+                
+                var noiseTex = loadTexture(gl, "img/vray-osl-alligator-noise.jpg");
+                
                 
                 gl.bindBuffer(gl.ARRAY_BUFFER, vertexBufferObject);
                 canvas.width = window.innerWidth;
@@ -975,8 +1036,13 @@
                     gl.useProgram(program1);
                     gl.uniform3fv(Loc_U_mousePos, [mouseX/canvas.width, 1.0-(mouseY + window.scrollY)/canvas.offsetHeight, mouseZ]);
                     gl.uniform2fv(resolutionUniformLocation, [canvas.width, canvas.height]);
+                    gl.uniform1i(noiseTextureUniformLocation3, 1);
                     gl.uniform1i(textureUniformLocation, 0);
-                    
+                    gl.activeTexture(gl.TEXTURE0);
+                    gl.bindTexture(gl.TEXTURE_2D, secondTex);
+                    gl.activeTexture(gl.TEXTURE1);
+                    gl.bindTexture(gl.TEXTURE_2D, noiseTex);
+
                     for(var i = 0; i < 10; i++){
                         if(time == Infinity){
                             time = 0;
@@ -987,27 +1053,30 @@
                         gl.uniform1f(Loc_U_time, [time]);
                         if (first)
                         {    
-                            gl.bindFramebuffer(gl.FRAMEBUFFER, fbo1);
+                            gl.activeTexture(gl.TEXTURE0);
                             gl.bindTexture(gl.TEXTURE_2D, secondTex);
+                            gl.bindFramebuffer(gl.FRAMEBUFFER, fbo1);
                             gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
                         }
                         else
                         {
-                            gl.bindFramebuffer(gl.FRAMEBUFFER, fbo2);
+                            gl.activeTexture(gl.TEXTURE0);
                             gl.bindTexture(gl.TEXTURE_2D, firstTex);
+                            gl.bindFramebuffer(gl.FRAMEBUFFER, fbo2);
                             gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
                         }
                         first = !first;
                     }
-
+                    
                     gl.useProgram(program3);
                     gl.uniform2fv(resolutionUniformLocation3, [canvas.width, canvas.height]);
+                    gl.uniform1i(textureUniformLocation3, 0);
+                    gl.activeTexture(gl.TEXTURE0);
                     gl.bindTexture(gl.TEXTURE_2D, secondTex);
                     //프레임 버퍼 제거
                     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
                     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
                     requestAnimationFrame(loop);
-                    
                 }
                 
                 requestAnimationFrame(loop);
